@@ -74,14 +74,27 @@ namespace Capa_Controlador_Citas
             return modelo.ObtenerSedes();
         }
 
-        public bool AsignarCita(int idCita)
+        public bool AgendarCita(
+            int idTipoCita,
+            DateTime fecha,
+            int idHorario,
+            int idSede,
+            int idBoleta
+        )
         {
             int idEstadoAsignado = modelo.ObtenerIdEstadoAsignado();
 
             if (idEstadoAsignado == 0)
                 return false;
 
-            return modelo.ActualizarEstadoCita(idCita, idEstadoAsignado);
+            return modelo.InsertarCita(
+                idTipoCita,
+                fecha,
+                idHorario,
+                idSede,
+                idEstadoAsignado,
+                idBoleta
+            );
         }
     }
 }

@@ -44,18 +44,28 @@ namespace Capa_Vista_Citas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Cls_Controlador_Citas controller = new Cls_Controlador_Citas();
-
-            bool resultado = controller.AgendarCita(
-                Dtp_Fecha_Cita.Value.Date,
+            if (
+         Cbo_Tipo_Cita.SelectedIndex == -1 ||
+         Cbo_Horario.SelectedIndex == -1 ||
+         Cbo_Sede.SelectedIndex == -1
+     )
+            {
+                MessageBox.Show("Complete todos los campos");
+                return;
+            }
+            int idBoleta = Convert.ToInt32(Txt_No_Boleta.Text);
+            bool resultado = controlador.AgendarCita(
                 Convert.ToInt32(Cbo_Tipo_Cita.SelectedValue),
+                Dtp_Fecha_Cita.Value.Date,
                 Convert.ToInt32(Cbo_Horario.SelectedValue),
                 Convert.ToInt32(Cbo_Sede.SelectedValue),
-                int.Parse(Txt_No_Boleta.Text),
-                out string mensaje
+                idBoleta // este valor ya lo debes tener
             );
 
-            MessageBox.Show(mensaje);
+            if (resultado)
+                MessageBox.Show("Cita agendada y asignada correctamente");
+            else
+                MessageBox.Show("Error al agendar la cita");
 
         }
     }

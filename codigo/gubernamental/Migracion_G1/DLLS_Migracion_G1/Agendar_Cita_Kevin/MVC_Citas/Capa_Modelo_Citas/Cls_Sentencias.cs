@@ -135,6 +135,42 @@ namespace Capa_Modelo_Citas
             }
         }
 
+        public bool InsertarCita(
+            int idTipoCita,
+            DateTime fecha,
+            int idHorario,
+            int idSede,
+            int idEstadoCita,
+            int idBoleta
+            )
+        {
+            string sql = @"
+    INSERT INTO Tbl_Cita
+    (
+        Fk_Id_Tipo_Cita,
+        Cmp_Fecha_Cita,
+        Fk_Id_Horarios,
+        Fk_Id_Sede,
+        Fk_Id_Estado_Cita,
+        Fk_Id_Boleta
+    )
+    VALUES (?, ?, ?, ?, ?, ?)";
+
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                OdbcCommand cmd = new OdbcCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@tipo", idTipoCita);
+                cmd.Parameters.AddWithValue("@fecha", fecha);
+                cmd.Parameters.AddWithValue("@horario", idHorario);
+                cmd.Parameters.AddWithValue("@sede", idSede);
+                cmd.Parameters.AddWithValue("@estado", idEstadoCita);
+                cmd.Parameters.AddWithValue("@boleta", idBoleta);
+
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
 
     }
 }
