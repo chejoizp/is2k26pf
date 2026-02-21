@@ -64,5 +64,12 @@ namespace Capa_Vista_Migracion
             pasaporte.Show();
 
         }
+
+        private void horariosDeCitaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Capa_Vista_Horario.Frm_Horario pasaporte = new Capa_Vista_Horario.Frm_Horario();
+            pasaporte.MdiParent = this;
+            pasaporte.Show();
+        }
     }
 }
