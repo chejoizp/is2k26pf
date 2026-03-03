@@ -50,8 +50,8 @@ namespace Capa_Vista_CheckList_Entrevista
 };
 
 
-            int id_aplicacion = 303;
-            int id_Modulo = 4;
+            int id_aplicacion = 100;
+            int id_Modulo = 1;
             navegador1.IPkId_Aplicacion = id_aplicacion;
             navegador1.IPkId_Modulo = id_Modulo;
             navegador1.configurarDataGridView(config);
