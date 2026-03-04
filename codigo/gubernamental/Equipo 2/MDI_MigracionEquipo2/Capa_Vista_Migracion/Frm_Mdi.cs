@@ -12,6 +12,7 @@ using CapaVista_Citas;
 using Capa_Vista_Datos_Cliente;
 using CapaVistaAlertas;
 using Capa_Vista_Reporteador;
+using Capa_Vista_ValidarCliente;
 
 namespace Capa_Vista_Migracion
 {
@@ -65,14 +66,14 @@ namespace Capa_Vista_Migracion
 
         private void rENAPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_RENAP renap = new Frm_RENAP();
-            renap.ShowDialog();
+            //Frm_RENAP renap = new Frm_RENAP();
+           // renap.ShowDialog();
         }
 
         private void policiaNacionalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Policia_Nacional policia = new Frm_Policia_Nacional();
-            policia.ShowDialog();
+          //  Frm_Policia_Nacional policia = new Frm_Policia_Nacional();
+           // policia.ShowDialog();
         }
 
         private void reporteadorToolStripMenuItem_Click(object sender, EventArgs e)
