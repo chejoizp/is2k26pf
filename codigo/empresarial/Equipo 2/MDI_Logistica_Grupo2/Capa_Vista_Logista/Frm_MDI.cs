@@ -11,7 +11,6 @@ using Capa_Vista_Mov_Inv;
 using Capa_Vista_LineaProd;
 using Capa_Vista_Ventas;
 using Mantenimiento_Proveedores;
-
 using Capa_Vista_Marca;
 
 namespace Capa_Vista_Logista
