@@ -41,7 +41,7 @@ namespace Mantenimiento_Proveedores
                     "cmp_direccion",
                     "cmp_telefono",
                     "cmp_correo",
-                    "cmp_descipcion",
+                    "cmp_descripcion",
                     "cmp_estado",
 
                 };
