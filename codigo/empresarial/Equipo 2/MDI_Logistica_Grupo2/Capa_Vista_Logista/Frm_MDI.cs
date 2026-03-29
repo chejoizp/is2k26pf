@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Capa_Vista_Mov_Inv;
 using Capa_Vista_LineaProd;
 using Capa_Vista_Ventas;
+using Capa_Vista_Marca;
 
 namespace Capa_Vista_Logista
 {
@@ -49,6 +50,13 @@ namespace Capa_Vista_Logista
         {
             Frm_Clientes Clientes = new Frm_Clientes();
             Clientes.ShowDialog();
+        }
+
+        private void marcaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Marca Marca = new Frm_Marca();
+            Marca.ShowDialog();
+            
         }
     }
 }
