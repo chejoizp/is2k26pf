@@ -16,6 +16,7 @@ using Capa_Vista_Empresa_Transporte;
 using Capa_Vista_Reporteador;
 using Capa_Vista_Seguridad;
 using Capa_Vista_Bodegaa;
+using Capa_Vista_Mov_Inv;
 
 namespace Capa_Vista_Logista
 {
