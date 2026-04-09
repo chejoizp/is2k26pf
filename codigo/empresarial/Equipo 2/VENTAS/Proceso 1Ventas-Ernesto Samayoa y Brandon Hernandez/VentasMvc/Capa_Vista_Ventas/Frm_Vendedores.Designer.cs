@@ -29,6 +29,7 @@ namespace Capa_Vista_Ventas
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Vendedores));
             this.navegador1 = new Capa_Vista_Navegador.Navegador();
             this.SuspendLayout();
             // 
@@ -51,8 +52,9 @@ namespace Capa_Vista_Ventas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1518, 750);
             this.Controls.Add(this.navegador1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Frm_Vendedores";
-            this.Text = "Frm_Vendedores";
+            this.Text = "Vendedores";
             this.ResumeLayout(false);
 
         }

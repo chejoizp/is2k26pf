@@ -65,6 +65,36 @@
     <Compile Include="Frm_Clientes.Designer.cs">
       <DependentUpon>Frm_Clientes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Pagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pagos.Designer.cs">
+      <DependentUpon>Frm_Pagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Pago_Cheque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago_Cheque.Designer.cs">
+      <DependentUpon>Frm_Pago_Cheque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_pago_efectivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_pago_efectivo.Designer.cs">
+      <DependentUpon>Frm_pago_efectivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Pago_Tarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago_Tarjeta.Designer.cs">
+      <DependentUpon>Frm_Pago_Tarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Pago_Transferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago_Transferencia.Designer.cs">
+      <DependentUpon>Frm_Pago_Transferencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Vendedores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +102,11 @@
       <DependentUpon>Frm_Vendedores.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Rpt_Clientes.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,8 +124,27 @@
     <EmbeddedResource Include="Frm_Clientes.resx">
       <DependentUpon>Frm_Clientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pagos.resx">
+      <DependentUpon>Frm_Pagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago_Cheque.resx">
+      <DependentUpon>Frm_Pago_Cheque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_pago_efectivo.resx">
+      <DependentUpon>Frm_pago_efectivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago_Tarjeta.resx">
+      <DependentUpon>Frm_Pago_Tarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago_Transferencia.resx">
+      <DependentUpon>Frm_Pago_Transferencia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Vendedores.resx">
       <DependentUpon>Frm_Vendedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Rpt_Clientes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -103,6 +157,24 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_guardar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_agregar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_modificar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_imprimir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_limpiar %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

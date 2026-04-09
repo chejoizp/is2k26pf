@@ -112,5 +112,11 @@ namespace Capa_Vista_Logista
             Frm_Mantenimiento_cuentas_por_pagar CXP = new Frm_Mantenimiento_cuentas_por_pagar();
             CXP.ShowDialog();
         }
+
+        private void pagosVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Pagos pagos = new Frm_Pagos();
+            pagos.ShowDialog();
+        }
     }
 }
