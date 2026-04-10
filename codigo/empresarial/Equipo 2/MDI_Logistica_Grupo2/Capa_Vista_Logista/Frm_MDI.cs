@@ -124,5 +124,11 @@ namespace Capa_Vista_Logista
             Frm_Encabezado_Transaccion Trans = new Frm_Encabezado_Transaccion();
             Trans.ShowDialog();
         }
+
+        private void inventarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Inventario_Mantenimiento Inv = new Frm_Inventario_Mantenimiento();
+            Inv.ShowDialog();
+        }
     }
 }

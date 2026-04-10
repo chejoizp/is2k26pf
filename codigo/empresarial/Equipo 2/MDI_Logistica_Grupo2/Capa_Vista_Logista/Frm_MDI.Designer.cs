@@ -46,11 +46,12 @@
             this.cuentasPorPagarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagosVentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.movimientoDeInventariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seguridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.movimientoDeInventariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inventarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Superior.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +62,7 @@
             this.Pnl_Superior.Controls.Add(this.label1);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
-            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2);
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(829, 52);
             this.Pnl_Superior.TabIndex = 99;
@@ -125,7 +126,8 @@
             this.empresaTransporteToolStripMenuItem,
             this.bodegaToolStripMenuItem,
             this.movimientoOperacionToolStripMenuItem,
-            this.cuentasPorPagarToolStripMenuItem});
+            this.cuentasPorPagarToolStripMenuItem,
+            this.inventarioToolStripMenuItem});
             this.catálogosToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.catálogosToolStripMenuItem.Name = "catálogosToolStripMenuItem";
             this.catálogosToolStripMenuItem.Size = new System.Drawing.Size(83, 21);
@@ -218,6 +220,13 @@
             this.pagosVentasToolStripMenuItem.Text = "Pagos Ventas";
             this.pagosVentasToolStripMenuItem.Click += new System.EventHandler(this.pagosVentasToolStripMenuItem_Click);
             // 
+            // movimientoDeInventariosToolStripMenuItem
+            // 
+            this.movimientoDeInventariosToolStripMenuItem.Name = "movimientoDeInventariosToolStripMenuItem";
+            this.movimientoDeInventariosToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
+            this.movimientoDeInventariosToolStripMenuItem.Text = "Movimiento De Inventarios";
+            this.movimientoDeInventariosToolStripMenuItem.Click += new System.EventHandler(this.movimientoDeInventariosToolStripMenuItem_Click);
+            // 
             // herramientasToolStripMenuItem
             // 
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -249,12 +258,12 @@
             this.seguridadToolStripMenuItem.Text = "Seguridad";
             this.seguridadToolStripMenuItem.Click += new System.EventHandler(this.seguridadToolStripMenuItem_Click);
             // 
-            // movimientoDeInventariosToolStripMenuItem
+            // inventarioToolStripMenuItem
             // 
-            this.movimientoDeInventariosToolStripMenuItem.Name = "movimientoDeInventariosToolStripMenuItem";
-            this.movimientoDeInventariosToolStripMenuItem.Size = new System.Drawing.Size(242, 22);
-            this.movimientoDeInventariosToolStripMenuItem.Text = "Movimiento De Inventarios";
-            this.movimientoDeInventariosToolStripMenuItem.Click += new System.EventHandler(this.movimientoDeInventariosToolStripMenuItem_Click);
+            this.inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
+            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.inventarioToolStripMenuItem.Text = "Inventario";
+            this.inventarioToolStripMenuItem.Click += new System.EventHandler(this.inventarioToolStripMenuItem_Click);
             // 
             // Frm_MDI
             // 
@@ -300,5 +309,6 @@
         private System.Windows.Forms.ToolStripMenuItem cuentasPorPagarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagosVentasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem movimientoDeInventariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inventarioToolStripMenuItem;
     }
 }

@@ -33,6 +33,7 @@ namespace Capa_Vista_Mov_Inv
             this.BTN_LIMPIAR_ENCABEZADO = new System.Windows.Forms.Button();
             this.Btn_Salir = new System.Windows.Forms.Button();
             this.GB_Detalle = new System.Windows.Forms.GroupBox();
+            this.NUD_Cant_mov = new System.Windows.Forms.NumericUpDown();
             this.Lbl_Cantidad = new System.Windows.Forms.Label();
             this.Cbo_ID_Inventario = new System.Windows.Forms.ComboBox();
             this.Lbl_Inventario = new System.Windows.Forms.Label();
@@ -57,12 +58,15 @@ namespace Capa_Vista_Mov_Inv
             this.Lbl_IDMovInv = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.NumUpDwn_CantidadMovida = new System.Windows.Forms.NumericUpDown();
+            this.btn_buscar = new System.Windows.Forms.Button();
+            this.Clm_ID_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clm_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Clm_Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GB_Detalle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Cant_mov)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_DETALLE_MOVIMIENTO)).BeginInit();
             this.GB_ENCABEZADO.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumUpDwn_CantidadMovida)).BeginInit();
             this.SuspendLayout();
             // 
             // BTN_LIMPIAR_ENCABEZADO
@@ -75,6 +79,7 @@ namespace Capa_Vista_Mov_Inv
             this.BTN_LIMPIAR_ENCABEZADO.Text = "LIMPIAR ENCABEZADO";
             this.BTN_LIMPIAR_ENCABEZADO.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BTN_LIMPIAR_ENCABEZADO.UseVisualStyleBackColor = true;
+            this.BTN_LIMPIAR_ENCABEZADO.Click += new System.EventHandler(this.BTN_LIMPIAR_ENCABEZADO_Click);
             // 
             // Btn_Salir
             // 
@@ -91,7 +96,7 @@ namespace Capa_Vista_Mov_Inv
             // 
             // GB_Detalle
             // 
-            this.GB_Detalle.Controls.Add(this.NumUpDwn_CantidadMovida);
+            this.GB_Detalle.Controls.Add(this.NUD_Cant_mov);
             this.GB_Detalle.Controls.Add(this.Lbl_Cantidad);
             this.GB_Detalle.Controls.Add(this.Cbo_ID_Inventario);
             this.GB_Detalle.Controls.Add(this.Lbl_Inventario);
@@ -106,6 +111,28 @@ namespace Capa_Vista_Mov_Inv
             this.GB_Detalle.TabIndex = 27;
             this.GB_Detalle.TabStop = false;
             this.GB_Detalle.Text = "DETALLE";
+            // 
+            // NUD_Cant_mov
+            // 
+            this.NUD_Cant_mov.Location = new System.Drawing.Point(545, 111);
+            this.NUD_Cant_mov.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.NUD_Cant_mov.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD_Cant_mov.Name = "NUD_Cant_mov";
+            this.NUD_Cant_mov.Size = new System.Drawing.Size(120, 26);
+            this.NUD_Cant_mov.TabIndex = 17;
+            this.NUD_Cant_mov.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // Lbl_Cantidad
             // 
@@ -145,6 +172,7 @@ namespace Capa_Vista_Mov_Inv
             this.BTN_LIMPIAR_DETALE.Text = "LIMPIAR";
             this.BTN_LIMPIAR_DETALE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.BTN_LIMPIAR_DETALE.UseVisualStyleBackColor = true;
+            this.BTN_LIMPIAR_DETALE.Click += new System.EventHandler(this.BTN_LIMPIAR_DETALE_Click);
             // 
             // Btn_Remover_Detalle
             // 
@@ -156,6 +184,7 @@ namespace Capa_Vista_Mov_Inv
             this.Btn_Remover_Detalle.Text = "REMOVER";
             this.Btn_Remover_Detalle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Remover_Detalle.UseVisualStyleBackColor = true;
+            this.Btn_Remover_Detalle.Click += new System.EventHandler(this.Btn_Remover_Detalle_Click);
             // 
             // Btn_Agregar_Detalle
             // 
@@ -167,19 +196,25 @@ namespace Capa_Vista_Mov_Inv
             this.Btn_Agregar_Detalle.Text = "AGREGAR";
             this.Btn_Agregar_Detalle.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Agregar_Detalle.UseVisualStyleBackColor = true;
+            this.Btn_Agregar_Detalle.Click += new System.EventHandler(this.Btn_Agregar_Detalle_Click);
             // 
             // DGV_DETALLE_MOVIMIENTO
             // 
             this.DGV_DETALLE_MOVIMIENTO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_DETALLE_MOVIMIENTO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Clm_ID_Producto,
+            this.Clm_Producto,
+            this.Clm_Cantidad});
             this.DGV_DETALLE_MOVIMIENTO.Location = new System.Drawing.Point(20, 161);
             this.DGV_DETALLE_MOVIMIENTO.Name = "DGV_DETALLE_MOVIMIENTO";
+            this.DGV_DETALLE_MOVIMIENTO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_DETALLE_MOVIMIENTO.Size = new System.Drawing.Size(789, 254);
             this.DGV_DETALLE_MOVIMIENTO.TabIndex = 10;
             // 
             // Btn_Modificar
             // 
             this.Btn_Modificar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Modificar.Image")));
-            this.Btn_Modificar.Location = new System.Drawing.Point(383, 111);
+            this.Btn_Modificar.Location = new System.Drawing.Point(290, 111);
             this.Btn_Modificar.Name = "Btn_Modificar";
             this.Btn_Modificar.Size = new System.Drawing.Size(86, 80);
             this.Btn_Modificar.TabIndex = 25;
@@ -212,13 +247,14 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Cancelar
             // 
             this.Btn_Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Cancelar.Image")));
-            this.Btn_Cancelar.Location = new System.Drawing.Point(291, 111);
+            this.Btn_Cancelar.Location = new System.Drawing.Point(198, 111);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
             this.Btn_Cancelar.Size = new System.Drawing.Size(86, 80);
             this.Btn_Cancelar.TabIndex = 22;
             this.Btn_Cancelar.Text = "CANCELAR";
             this.Btn_Cancelar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Cancelar.UseVisualStyleBackColor = true;
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
             // 
             // btn_Guardar
             // 
@@ -235,13 +271,14 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Agregar_Movimiento
             // 
             this.Btn_Agregar_Movimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Agregar_Movimiento.Image")));
-            this.Btn_Agregar_Movimiento.Location = new System.Drawing.Point(132, 111);
+            this.Btn_Agregar_Movimiento.Location = new System.Drawing.Point(12, 93);
             this.Btn_Agregar_Movimiento.Name = "Btn_Agregar_Movimiento";
             this.Btn_Agregar_Movimiento.Size = new System.Drawing.Size(132, 80);
             this.Btn_Agregar_Movimiento.TabIndex = 20;
             this.Btn_Agregar_Movimiento.Text = "ADD Movimiento";
             this.Btn_Agregar_Movimiento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Agregar_Movimiento.UseVisualStyleBackColor = true;
+            this.Btn_Agregar_Movimiento.Click += new System.EventHandler(this.Btn_Agregar_Movimiento_Click);
             // 
             // GB_ENCABEZADO
             // 
@@ -290,7 +327,7 @@ namespace Capa_Vista_Mov_Inv
             this.CBO_ID_Tipo_Movimiento.Location = new System.Drawing.Point(155, 70);
             this.CBO_ID_Tipo_Movimiento.MaxLength = 13;
             this.CBO_ID_Tipo_Movimiento.Name = "CBO_ID_Tipo_Movimiento";
-            this.CBO_ID_Tipo_Movimiento.Size = new System.Drawing.Size(162, 27);
+            this.CBO_ID_Tipo_Movimiento.Size = new System.Drawing.Size(311, 27);
             this.CBO_ID_Tipo_Movimiento.TabIndex = 5;
             // 
             // Lbl_Descripcion
@@ -352,18 +389,39 @@ namespace Capa_Vista_Mov_Inv
             this.label1.TabIndex = 1;
             this.label1.Text = "Movimiento De Inventario";
             // 
-            // NumUpDwn_CantidadMovida
+            // btn_buscar
             // 
-            this.NumUpDwn_CantidadMovida.Location = new System.Drawing.Point(545, 111);
-            this.NumUpDwn_CantidadMovida.Name = "NumUpDwn_CantidadMovida";
-            this.NumUpDwn_CantidadMovida.Size = new System.Drawing.Size(120, 26);
-            this.NumUpDwn_CantidadMovida.TabIndex = 17;
+            this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
+            this.btn_buscar.Location = new System.Drawing.Point(382, 111);
+            this.btn_buscar.Name = "btn_buscar";
+            this.btn_buscar.Size = new System.Drawing.Size(86, 80);
+            this.btn_buscar.TabIndex = 31;
+            this.btn_buscar.Text = "BUSCAR";
+            this.btn_buscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
+            // 
+            // Clm_ID_Producto
+            // 
+            this.Clm_ID_Producto.HeaderText = "ID Producto";
+            this.Clm_ID_Producto.Name = "Clm_ID_Producto";
+            // 
+            // Clm_Producto
+            // 
+            this.Clm_Producto.HeaderText = "Producto";
+            this.Clm_Producto.Name = "Clm_Producto";
+            // 
+            // Clm_Cantidad
+            // 
+            this.Clm_Cantidad.HeaderText = "Cantidad";
+            this.Clm_Cantidad.Name = "Clm_Cantidad";
             // 
             // Frm_Encabezado_Transaccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(861, 881);
+            this.Controls.Add(this.btn_buscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.BTN_LIMPIAR_ENCABEZADO);
             this.Controls.Add(this.Btn_Salir);
@@ -376,15 +434,15 @@ namespace Capa_Vista_Mov_Inv
             this.Controls.Add(this.Btn_Agregar_Movimiento);
             this.Controls.Add(this.GB_ENCABEZADO);
             this.Name = "Frm_Encabezado_Transaccion";
-            this.Text = "Frm_Encabezado_Transaccion";
+            this.Text = "Movimiento de Inventario";
             this.GB_Detalle.ResumeLayout(false);
             this.GB_Detalle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD_Cant_mov)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_DETALLE_MOVIMIENTO)).EndInit();
             this.GB_ENCABEZADO.ResumeLayout(false);
             this.GB_ENCABEZADO.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumUpDwn_CantidadMovida)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -418,6 +476,10 @@ namespace Capa_Vista_Mov_Inv
         private System.Windows.Forms.Label Lbl_Cantidad;
         private System.Windows.Forms.ComboBox Cbo_ID_Inventario;
         private System.Windows.Forms.Label Lbl_Inventario;
-        private System.Windows.Forms.NumericUpDown NumUpDwn_CantidadMovida;
+        private System.Windows.Forms.NumericUpDown NUD_Cant_mov;
+        private System.Windows.Forms.Button btn_buscar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clm_ID_Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clm_Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Clm_Cantidad;
     }
 }
