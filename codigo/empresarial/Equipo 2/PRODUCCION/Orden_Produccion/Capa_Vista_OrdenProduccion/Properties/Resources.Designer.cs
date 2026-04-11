@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Capa_Vista_Logista.Properties {
+namespace Capa_Vista_OrdenProduccion.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Capa_Vista_Logista.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_Vista_Logista.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_Vista_OrdenProduccion.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace Capa_Vista_Logista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap orden {
+        internal static System.Drawing.Bitmap icono_agregar {
             get {
-                object obj = ResourceManager.GetObject("orden", resourceCulture);
+                object obj = ResourceManager.GetObject("icono_agregar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,59 @@ namespace Capa_Vista_Logista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap paquete {
+        internal static System.Drawing.Bitmap icono_buscar {
             get {
-                object obj = ResourceManager.GetObject("paquete", resourceCulture);
+                object obj = ResourceManager.GetObject("icono_buscar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icono_eliminar {
+            get {
+                object obj = ResourceManager.GetObject("icono_eliminar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icono_imprimir {
+            get {
+                object obj = ResourceManager.GetObject("icono_imprimir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icono_modificar {
+            get {
+                object obj = ResourceManager.GetObject("icono_modificar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icono_refrescar {
+            get {
+                object obj = ResourceManager.GetObject("icono_refrescar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icono_salir {
+            get {
+                object obj = ResourceManager.GetObject("icono_salir", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
