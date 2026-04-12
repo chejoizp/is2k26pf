@@ -41,19 +41,24 @@
     <Reference Include="Capa_Vista_Empresa_Transporte">
       <HintPath>..\..\DISTRIBUCION\Proceso4 Mantenimiento Transporte Sergio Izeppi\Capa_Vista_Empresa_Transporte\Capa_Vista_Empresa_Transporte\bin\Debug\Capa_Vista_Empresa_Transporte.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_vista_factura">
-      <HintPath>..\..\COMPRAS\Proceso 2 Facturas Marcos\Frm_facturas\Capa_vista_factura\bin\Debug\Capa_vista_factura.dll</HintPath>
+    <Reference Include="Capa_vista_Factura">
+      <HintPath>..\..\COMPRAS\Proceso 2 Facturas\Frm_facturas\Capa_vista_Factura\bin\Debug\Capa_vista_Factura.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Vista_LineaProd">
     <Reference Include="Capa_Vista_LineaProd, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\PRODUCCION\Proceso 5-MantenimientoLineaProducto\P5KenphLunaMantLinea\Capa_Vista_LineaProd\bin\Debug\Capa_Vista_LineaProd.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_vista_Mantenimiento_Proveedores">
+      <HintPath>..\..\COMPRAS\Proceso 2 Proveesores Macos velásquez\Mantenimiento Proveedores\Mantenimiento Proveedores\bin\Debug\Capa_vista_Mantenimiento_Proveedores.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Marca">
       <HintPath>..\..\PRODUCCION\Proceso 5 Mantenimiento-Marca-PabloQuiroa\Capa_Vista_Marca\bin\Debug\Capa_Vista_Marca.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Mov_Inv">
       <HintPath>..\..\INVENTARIO\Proceso 5 Transacciones de Inventario Pedro Ibañez\P5MovInvPedroIbañez\Capa_Vista_Mov_Inv\bin\Debug\Capa_Vista_Mov_Inv.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_OrdenDetalle">
+      <HintPath>..\..\PRODUCCION\Orden_Produccion_Detalle\Capa_Vista_OrdenDetalle\bin\Debug\Capa_Vista_OrdenDetalle.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_OrdenProduccion">
       <HintPath>..\..\PRODUCCION\Orden_Produccion\Capa_Vista_OrdenProduccion\bin\Debug\Capa_Vista_OrdenProduccion.dll</HintPath>
@@ -74,7 +79,7 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Mantenimiento_cuentas_por_pagar">
-      <HintPath>..\..\COMPRAS\proseso 2 mantenimiento cuentas por  pagar Danilo\Mantenimiento_cuentas_por_pagar\Mantenimiento_cuentas_por_pagar\bin\Debug\Mantenimiento_cuentas_por_pagar.dll</HintPath>
+      <HintPath>..\..\COMPRAS\proseso 2 cuentaspagar Danilo\Mantenimiento_cuentasporpagar\Mantenimiento_cuentas_por_pagar\bin\Debug\Mantenimiento_cuentas_por_pagar.dll</HintPath>
     </Reference>
     <Reference Include="Mantenimiento_tipo_MOV_inv">
       <HintPath>..\..\INVENTARIO\Proceso 5 Mantenimiento Movimiento Intentario\Mantenimiento_tipo_MOV_inv\Mantenimiento_tipo_MOV_inv\bin\Debug\Mantenimiento_tipo_MOV_inv.dll</HintPath>
@@ -128,13 +133,13 @@
     <None Include="Resources\11671524.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\11671524.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\paquete.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\orden.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Devolucion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

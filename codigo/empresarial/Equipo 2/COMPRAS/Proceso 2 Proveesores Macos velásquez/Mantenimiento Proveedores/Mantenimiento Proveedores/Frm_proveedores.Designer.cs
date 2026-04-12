@@ -29,6 +29,7 @@ namespace Mantenimiento_Proveedores
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_proveedores));
             this.navegador1 = new Capa_Vista_Navegador.Navegador();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -63,8 +64,8 @@ namespace Mantenimiento_Proveedores
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Capa_vista_Mantenimiento_Proveedores.Properties.Resources._3321752;
-            this.pictureBox1.Location = new System.Drawing.Point(436, 0);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(439, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(85, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

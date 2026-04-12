@@ -29,9 +29,10 @@ namespace Capa_Vista_Ventas
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ventas));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.GB_Ventas = new System.Windows.Forms.GroupBox();
             this.Txt_Saldo_total = new System.Windows.Forms.TextBox();
@@ -71,13 +72,13 @@ namespace Capa_Vista_Ventas
             this.Btn_Ayuda = new System.Windows.Forms.Button();
             this.Btn_Cancelar_Ventas = new System.Windows.Forms.Button();
             this.Btn_Agregar_Ventas = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Btn_Pagar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.GB_Ventas.SuspendLayout();
             this.GB_Detalle_Ventas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Cant_Prod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_DETALLE_VENTA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,6 +91,16 @@ namespace Capa_Vista_Ventas
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1215, 98);
             this.panel1.TabIndex = 31;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Capa_Vista_Ventas.Properties.Resources.shopping_commerce_flower_supermarket_sale_cart_icon_255564;
+            this.pictureBox1.Location = new System.Drawing.Point(132, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(81, 74);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -367,9 +378,9 @@ namespace Capa_Vista_Ventas
             // 
             // Clm_Id_venta
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Clm_Id_venta.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Clm_Id_venta.DefaultCellStyle = dataGridViewCellStyle3;
             this.Clm_Id_venta.HeaderText = "Id";
             this.Clm_Id_venta.MinimumWidth = 6;
             this.Clm_Id_venta.Name = "Clm_Id_venta";
@@ -549,22 +560,26 @@ namespace Capa_Vista_Ventas
             this.Btn_Agregar_Ventas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Agregar_Ventas.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // Btn_Pagar
             // 
-            this.pictureBox1.Image = global::Capa_Vista_Ventas.Properties.Resources.shopping_commerce_flower_supermarket_sale_cart_icon_255564;
-            this.pictureBox1.Location = new System.Drawing.Point(132, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(81, 74);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
+            this.Btn_Pagar.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Btn_Pagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Pagar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_Pagar.Location = new System.Drawing.Point(458, 855);
+            this.Btn_Pagar.Name = "Btn_Pagar";
+            this.Btn_Pagar.Size = new System.Drawing.Size(322, 82);
+            this.Btn_Pagar.TabIndex = 165;
+            this.Btn_Pagar.Text = "Pagar";
+            this.Btn_Pagar.UseVisualStyleBackColor = false;
+            this.Btn_Pagar.Click += new System.EventHandler(this.Btn_Pagar_Click);
             // 
             // Frm_Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1220, 912);
+            this.ClientSize = new System.Drawing.Size(1276, 939);
+            this.Controls.Add(this.Btn_Pagar);
             this.Controls.Add(this.GB_Detalle_Ventas);
             this.Controls.Add(this.GB_Ventas);
             this.Controls.Add(this.Btn_Remover_Detalle);
@@ -584,13 +599,13 @@ namespace Capa_Vista_Ventas
             this.Load += new System.EventHandler(this.Frm_Ventas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.GB_Ventas.ResumeLayout(false);
             this.GB_Ventas.PerformLayout();
             this.GB_Detalle_Ventas.ResumeLayout(false);
             this.GB_Detalle_Ventas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Cant_Prod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_DETALLE_VENTA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -638,5 +653,6 @@ namespace Capa_Vista_Ventas
         private System.Windows.Forms.DataGridViewTextBoxColumn Clm_Precio_sub;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clm_Costo_Subtotal;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button Btn_Pagar;
     }
 }

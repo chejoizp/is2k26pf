@@ -40,8 +40,11 @@ namespace Capa_Vista_Ventas
             this.Btn_Limpiar = new System.Windows.Forms.Button();
             this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Btn_Nuevo = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.Gbo_Cmpos.SuspendLayout();
             this.Gbo_Pago_Con_Efectivo.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Gbo_Cmpos
@@ -50,7 +53,7 @@ namespace Capa_Vista_Ventas
             this.Gbo_Cmpos.Controls.Add(this.Txt_Numero_Recibo);
             this.Gbo_Cmpos.Controls.Add(this.Lbl_Observaciones);
             this.Gbo_Cmpos.Controls.Add(this.Lbl_Numero_Recibo);
-            this.Gbo_Cmpos.Location = new System.Drawing.Point(13, 154);
+            this.Gbo_Cmpos.Location = new System.Drawing.Point(13, 240);
             this.Gbo_Cmpos.Name = "Gbo_Cmpos";
             this.Gbo_Cmpos.Size = new System.Drawing.Size(1144, 341);
             this.Gbo_Cmpos.TabIndex = 128;
@@ -93,7 +96,7 @@ namespace Capa_Vista_Ventas
             // Gbo_Pago_Con_Efectivo
             // 
             this.Gbo_Pago_Con_Efectivo.Controls.Add(this.Lbl_Pago_Con_Efectivo);
-            this.Gbo_Pago_Con_Efectivo.Location = new System.Drawing.Point(12, 22);
+            this.Gbo_Pago_Con_Efectivo.Location = new System.Drawing.Point(12, 108);
             this.Gbo_Pago_Con_Efectivo.Name = "Gbo_Pago_Con_Efectivo";
             this.Gbo_Pago_Con_Efectivo.Size = new System.Drawing.Size(699, 104);
             this.Gbo_Pago_Con_Efectivo.TabIndex = 127;
@@ -116,7 +119,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Limpiar.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Limpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Limpiar.Image = global::Capa_Vista_Ventas.Properties.Resources.icono_limpiar__1_;
-            this.Btn_Limpiar.Location = new System.Drawing.Point(1083, 43);
+            this.Btn_Limpiar.Location = new System.Drawing.Point(1083, 129);
             this.Btn_Limpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Limpiar.Name = "Btn_Limpiar";
             this.Btn_Limpiar.Size = new System.Drawing.Size(55, 54);
@@ -131,7 +134,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Guardar.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Guardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Guardar.Image = global::Capa_Vista_Ventas.Properties.Resources.icono_guardar;
-            this.Btn_Guardar.Location = new System.Drawing.Point(1002, 43);
+            this.Btn_Guardar.Location = new System.Drawing.Point(1002, 129);
             this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Guardar.Name = "Btn_Guardar";
             this.Btn_Guardar.Size = new System.Drawing.Size(55, 54);
@@ -146,7 +149,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Nuevo.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Nuevo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Nuevo.Image = global::Capa_Vista_Ventas.Properties.Resources.icono_agregar;
-            this.Btn_Nuevo.Location = new System.Drawing.Point(919, 43);
+            this.Btn_Nuevo.Location = new System.Drawing.Point(919, 129);
             this.Btn_Nuevo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Nuevo.Name = "Btn_Nuevo";
             this.Btn_Nuevo.Size = new System.Drawing.Size(55, 54);
@@ -154,11 +157,31 @@ namespace Capa_Vista_Ventas
             this.Btn_Nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Nuevo.UseVisualStyleBackColor = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(2, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1174, 98);
+            this.panel1.TabIndex = 133;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(26, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(190, 38);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "710 - Pagos ";
+            // 
             // Frm_pago_efectivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1196, 601);
+            this.ClientSize = new System.Drawing.Size(1171, 589);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.Btn_Limpiar);
             this.Controls.Add(this.Btn_Guardar);
             this.Controls.Add(this.Btn_Nuevo);
@@ -171,6 +194,8 @@ namespace Capa_Vista_Ventas
             this.Gbo_Cmpos.PerformLayout();
             this.Gbo_Pago_Con_Efectivo.ResumeLayout(false);
             this.Gbo_Pago_Con_Efectivo.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -187,5 +212,7 @@ namespace Capa_Vista_Ventas
         private System.Windows.Forms.Label Lbl_Numero_Recibo;
         private System.Windows.Forms.GroupBox Gbo_Pago_Con_Efectivo;
         private System.Windows.Forms.Label Lbl_Pago_Con_Efectivo;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }

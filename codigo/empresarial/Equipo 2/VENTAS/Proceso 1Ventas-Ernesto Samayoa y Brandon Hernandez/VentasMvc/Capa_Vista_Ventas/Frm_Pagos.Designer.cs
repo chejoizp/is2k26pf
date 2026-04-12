@@ -35,7 +35,7 @@ namespace Capa_Vista_Ventas
             this.Txt_Monto = new System.Windows.Forms.TextBox();
             this.Cbo_Estado = new System.Windows.Forms.ComboBox();
             this.Cbo_MetodoPago = new System.Windows.Forms.ComboBox();
-            this.Cbo_Folio = new System.Windows.Forms.ComboBox();
+            this.Cbo_CXC = new System.Windows.Forms.ComboBox();
             this.Lbl_Estado = new System.Windows.Forms.Label();
             this.Lbl_Monto = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
@@ -46,8 +46,11 @@ namespace Capa_Vista_Ventas
             this.Btn_Limpiar = new System.Windows.Forms.Button();
             this.Btn_Nuevo = new System.Windows.Forms.Button();
             this.Btn_Guardar = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.Gbo_Cmpos.SuspendLayout();
             this.Gbo_Pago.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Gbo_Cmpos
@@ -56,13 +59,13 @@ namespace Capa_Vista_Ventas
             this.Gbo_Cmpos.Controls.Add(this.Txt_Monto);
             this.Gbo_Cmpos.Controls.Add(this.Cbo_Estado);
             this.Gbo_Cmpos.Controls.Add(this.Cbo_MetodoPago);
-            this.Gbo_Cmpos.Controls.Add(this.Cbo_Folio);
+            this.Gbo_Cmpos.Controls.Add(this.Cbo_CXC);
             this.Gbo_Cmpos.Controls.Add(this.Lbl_Estado);
             this.Gbo_Cmpos.Controls.Add(this.Lbl_Monto);
             this.Gbo_Cmpos.Controls.Add(this.Lbl_Fecha);
             this.Gbo_Cmpos.Controls.Add(this.Lbl_MetodoPago);
             this.Gbo_Cmpos.Controls.Add(this.Lbl_Folio);
-            this.Gbo_Cmpos.Location = new System.Drawing.Point(12, 152);
+            this.Gbo_Cmpos.Location = new System.Drawing.Point(12, 215);
             this.Gbo_Cmpos.Name = "Gbo_Cmpos";
             this.Gbo_Cmpos.Size = new System.Drawing.Size(1058, 341);
             this.Gbo_Cmpos.TabIndex = 121;
@@ -99,13 +102,13 @@ namespace Capa_Vista_Ventas
             this.Cbo_MetodoPago.TabIndex = 23;
             this.Cbo_MetodoPago.SelectedIndexChanged += new System.EventHandler(this.Cbo_MetodoPago_SelectedIndexChanged);
             // 
-            // Cbo_Folio
+            // Cbo_CXC
             // 
-            this.Cbo_Folio.FormattingEnabled = true;
-            this.Cbo_Folio.Location = new System.Drawing.Point(211, 21);
-            this.Cbo_Folio.Name = "Cbo_Folio";
-            this.Cbo_Folio.Size = new System.Drawing.Size(293, 24);
-            this.Cbo_Folio.TabIndex = 22;
+            this.Cbo_CXC.FormattingEnabled = true;
+            this.Cbo_CXC.Location = new System.Drawing.Point(211, 21);
+            this.Cbo_CXC.Name = "Cbo_CXC";
+            this.Cbo_CXC.Size = new System.Drawing.Size(293, 24);
+            this.Cbo_CXC.TabIndex = 22;
             // 
             // Lbl_Estado
             // 
@@ -160,7 +163,7 @@ namespace Capa_Vista_Ventas
             // Gbo_Pago
             // 
             this.Gbo_Pago.Controls.Add(this.Lbl_Pagos);
-            this.Gbo_Pago.Location = new System.Drawing.Point(12, 25);
+            this.Gbo_Pago.Location = new System.Drawing.Point(12, 88);
             this.Gbo_Pago.Name = "Gbo_Pago";
             this.Gbo_Pago.Size = new System.Drawing.Size(699, 104);
             this.Gbo_Pago.TabIndex = 120;
@@ -183,7 +186,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Limpiar.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Limpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Limpiar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Limpiar.Image")));
-            this.Btn_Limpiar.Location = new System.Drawing.Point(1006, 41);
+            this.Btn_Limpiar.Location = new System.Drawing.Point(1002, 104);
             this.Btn_Limpiar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Limpiar.Name = "Btn_Limpiar";
             this.Btn_Limpiar.Size = new System.Drawing.Size(55, 54);
@@ -198,7 +201,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Nuevo.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Nuevo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Nuevo.Image")));
-            this.Btn_Nuevo.Location = new System.Drawing.Point(871, 41);
+            this.Btn_Nuevo.Location = new System.Drawing.Point(871, 104);
             this.Btn_Nuevo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Nuevo.Name = "Btn_Nuevo";
             this.Btn_Nuevo.Size = new System.Drawing.Size(55, 54);
@@ -214,7 +217,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Guardar.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Guardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Guardar.Image = global::Capa_Vista_Ventas.Properties.Resources.icono_guardar;
-            this.Btn_Guardar.Location = new System.Drawing.Point(932, 41);
+            this.Btn_Guardar.Location = new System.Drawing.Point(932, 104);
             this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Guardar.Name = "Btn_Guardar";
             this.Btn_Guardar.Size = new System.Drawing.Size(55, 54);
@@ -223,16 +226,36 @@ namespace Capa_Vista_Ventas
             this.Btn_Guardar.UseVisualStyleBackColor = false;
             this.Btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(0, -4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1087, 103);
+            this.panel1.TabIndex = 122;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(26, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(190, 38);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "710 - Pagos ";
+            // 
             // Frm_Pagos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1096, 529);
-            this.Controls.Add(this.Gbo_Cmpos);
+            this.ClientSize = new System.Drawing.Size(1087, 614);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.Gbo_Pago);
             this.Controls.Add(this.Btn_Limpiar);
             this.Controls.Add(this.Btn_Nuevo);
             this.Controls.Add(this.Btn_Guardar);
+            this.Controls.Add(this.Gbo_Cmpos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Frm_Pagos";
             this.Text = "Pagos";
@@ -240,6 +263,8 @@ namespace Capa_Vista_Ventas
             this.Gbo_Cmpos.PerformLayout();
             this.Gbo_Pago.ResumeLayout(false);
             this.Gbo_Pago.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -251,7 +276,7 @@ namespace Capa_Vista_Ventas
         private System.Windows.Forms.TextBox Txt_Monto;
         private System.Windows.Forms.ComboBox Cbo_Estado;
         private System.Windows.Forms.ComboBox Cbo_MetodoPago;
-        private System.Windows.Forms.ComboBox Cbo_Folio;
+        private System.Windows.Forms.ComboBox Cbo_CXC;
         private System.Windows.Forms.Label Lbl_Estado;
         private System.Windows.Forms.Label Lbl_Monto;
         private System.Windows.Forms.Label Lbl_Fecha;
@@ -262,5 +287,7 @@ namespace Capa_Vista_Ventas
         private System.Windows.Forms.Button Btn_Limpiar;
         private System.Windows.Forms.Button Btn_Nuevo;
         private System.Windows.Forms.Button Btn_Guardar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
