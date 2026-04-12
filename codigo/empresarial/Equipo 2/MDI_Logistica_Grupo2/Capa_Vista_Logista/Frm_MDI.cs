@@ -17,12 +17,9 @@ using Capa_Vista_Reporteador;
 using Capa_Vista_Seguridad;
 using Capa_Vista_Bodegaa;
 using Capa_Vista_Mov_Inv;
-
 using Mantenimiento_cuentas_por_pagar;
-using Capa_vista_factura;
-using Capa_vista_factura;
 using Capa_Vista_OrdenProduccion;
-
+using Capa_vista_Factura;
 namespace Capa_Vista_Logista
 {
     public partial class Frm_MDI : Form
@@ -135,17 +132,9 @@ namespace Capa_Vista_Logista
             Inv.ShowDialog();
         }
 
-        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_factura factura = new Frm_factura();
-            factura.ShowDialog();
-        }
+       
 
-        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_factura factura = new Frm_factura();
-            factura.ShowDialog();
-        }
+        
 
         private void ordenDeProduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -163,6 +152,12 @@ namespace Capa_Vista_Logista
         {
             Frm_Sucursales sucursales = new Frm_Sucursales();
             sucursales.ShowDialog();
+        }
+
+        private void facturasToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Frm_factura factura = new Frm_factura();
+            factura.ShowDialog();
         }
     }
 }

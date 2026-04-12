@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Capa_Vista_Logista.Properties {
+namespace Capa_vista_Factura.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Capa_Vista_Logista.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_Vista_Logista.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_vista_Factura.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace Capa_Vista_Logista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _11671524 {
+        internal static System.Drawing.Bitmap add_insert_new_plus_button_icon_142943 {
             get {
-                object obj = ResourceManager.GetObject("11671524", resourceCulture);
+                object obj = ResourceManager.GetObject("add_insert_new_plus_button_icon_142943", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,14 +73,9 @@ namespace Capa_Vista_Logista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-       
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap orden {
+        internal static System.Drawing.Bitmap android_search_icon_icons_com_50501 {
             get {
-                object obj = ResourceManager.GetObject("orden", resourceCulture);
+                object obj = ResourceManager.GetObject("android-search_icon-icons.com_50501", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -88,9 +83,49 @@ namespace Capa_Vista_Logista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap paquete {
+        internal static System.Drawing.Bitmap clear_all_icon_180807 {
             get {
-                object obj = ResourceManager.GetObject("paquete", resourceCulture);
+                object obj = ResourceManager.GetObject("clear_all_icon_180807", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap help_question_16768 {
+            get {
+                object obj = ResourceManager.GetObject("help_question_16768", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_black_printer_tool_symbol_icon_icons_com_54467 {
+            get {
+                object obj = ResourceManager.GetObject("print-black-printer-tool-symbol_icon-icons.com_54467", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap savetheapplication_guardar_2958 {
+            get {
+                object obj = ResourceManager.GetObject("savetheapplication_guardar_2958", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sign_emergency_code_sos_61_icon_icons_com_57216 {
+            get {
+                object obj = ResourceManager.GetObject("sign-emergency-code-sos_61_icon-icons.com_57216", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
