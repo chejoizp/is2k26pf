@@ -41,12 +41,13 @@
     <Reference Include="Capa_Vista_Empresa_Transporte">
       <HintPath>..\..\DISTRIBUCION\Proceso4 Mantenimiento Transporte Sergio Izeppi\Capa_Vista_Empresa_Transporte\Capa_Vista_Empresa_Transporte\bin\Debug\Capa_Vista_Empresa_Transporte.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_vista_factura">
+      <HintPath>..\..\COMPRAS\Proceso 2 Facturas Marcos\Frm_facturas\Capa_vista_factura\bin\Debug\Capa_vista_factura.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_LineaProd">
     <Reference Include="Capa_Vista_LineaProd, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\PRODUCCION\Proceso 5-MantenimientoLineaProducto\P5KenphLunaMantLinea\Capa_Vista_LineaProd\bin\Debug\Capa_Vista_LineaProd.dll</HintPath>
-    </Reference>
-    <Reference Include="Capa_vista_Mantenimiento_Proveedores">
-      <HintPath>..\..\COMPRAS\Proceso 2 Proveesores Macos velásquez\Mantenimiento Proveedores\Mantenimiento Proveedores\bin\Debug\Capa_vista_Mantenimiento_Proveedores.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Marca">
       <HintPath>..\..\PRODUCCION\Proceso 5 Mantenimiento-Marca-PabloQuiroa\Capa_Vista_Marca\bin\Debug\Capa_Vista_Marca.dll</HintPath>
@@ -122,6 +123,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11671524.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11671524.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\paquete.png" />

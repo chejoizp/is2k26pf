@@ -19,6 +19,8 @@ using Capa_Vista_Bodegaa;
 using Capa_Vista_Mov_Inv;
 
 using Mantenimiento_cuentas_por_pagar;
+using Capa_vista_factura;
+using Capa_vista_factura;
 using Capa_Vista_OrdenProduccion;
 
 namespace Capa_Vista_Logista
@@ -131,6 +133,18 @@ namespace Capa_Vista_Logista
         {
             Frm_Inventario_Mantenimiento Inv = new Frm_Inventario_Mantenimiento();
             Inv.ShowDialog();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_factura factura = new Frm_factura();
+            factura.ShowDialog();
+        }
+
+        private void facturasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_factura factura = new Frm_factura();
+            factura.ShowDialog();
         }
 
         private void ordenDeProduccionToolStripMenuItem_Click(object sender, EventArgs e)

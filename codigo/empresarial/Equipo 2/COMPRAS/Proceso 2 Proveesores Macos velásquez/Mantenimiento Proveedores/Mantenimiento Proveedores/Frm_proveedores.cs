@@ -74,5 +74,20 @@ namespace Mantenimiento_Proveedores
 
 
         }
+
+        private void Frm_proveedores_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navegador1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
