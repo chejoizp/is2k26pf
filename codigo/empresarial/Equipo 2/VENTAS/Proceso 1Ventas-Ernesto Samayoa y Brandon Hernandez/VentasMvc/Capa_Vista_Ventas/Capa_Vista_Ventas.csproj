@@ -59,11 +59,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cls_TipoOperacion.cs" />
+    <Compile Include="Frm_CXC_Detalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_CXC_Detalle.Designer.cs">
+      <DependentUpon>Frm_CXC_Detalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Cuentaporcobrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Cuentaporcobrar.Designer.cs">
+      <DependentUpon>Frm_Cuentaporcobrar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Clientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Clientes.Designer.cs">
       <DependentUpon>Frm_Clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Devolucion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Devolucion.Designer.cs">
+      <DependentUpon>Frm_Devolucion.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Pagos.cs">
       <SubType>Form</SubType>
@@ -139,8 +158,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_CXC_Detalle.resx">
+      <DependentUpon>Frm_CXC_Detalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Cuentaporcobrar.resx">
+      <DependentUpon>Frm_Cuentaporcobrar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Clientes.resx">
       <DependentUpon>Frm_Clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Devolucion.resx">
+      <DependentUpon>Frm_Devolucion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Pagos.resx">
       <DependentUpon>Frm_Pagos.cs</DependentUpon>

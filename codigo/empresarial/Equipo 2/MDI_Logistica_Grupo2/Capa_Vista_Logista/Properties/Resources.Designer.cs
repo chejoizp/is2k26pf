@@ -73,7 +73,22 @@ namespace Capa_Vista_Logista.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-       
+        internal static System.Drawing.Bitmap CXC {
+            get {
+                object obj = ResourceManager.GetObject("CXC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Devolucion {
+            get {
+                object obj = ResourceManager.GetObject("Devolucion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
         
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.

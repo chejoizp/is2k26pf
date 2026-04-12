@@ -167,5 +167,18 @@ namespace Capa_Vista_Logista
             OrdenProd.ShowDialog();
            
         }
+
+        private void cuentasPorCobrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Cuentaporcobrar CXC = new Frm_Cuentaporcobrar();
+            CXC.ShowDialog();
+
+        }
+
+        private void devoluconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Devolucion devolucion = new Frm_Devolucion();
+            devolucion.ShowDialog();
+        }
     }
 }
