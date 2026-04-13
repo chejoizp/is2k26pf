@@ -22,6 +22,8 @@ using Capa_Vista_OrdenProduccion;
 using Capa_vista_Factura;
 using Capa_Vista_OrdenDetalle;
 using Capa_Vista_Comprobantes;
+using Capa_Vista_Compras;
+
 namespace Capa_Vista_Logista
 {
     public partial class Frm_MDI : Form
@@ -182,7 +184,6 @@ namespace Capa_Vista_Logista
             devolucion.ShowDialog();
         }
 
-<<<<<<< HEAD
         private void comprobanteCompraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_Comprobante_Compra com_compra = new Frm_Comprobante_Compra();
@@ -199,30 +200,36 @@ namespace Capa_Vista_Logista
         {
             Frm_Comprobante_Produccion com_prod = new Frm_Comprobante_Produccion();
             com_prod.ShowDialog();
-=======
-        private void trasnportesToolStripMenuItem_Click(object sender, EventArgs e)
+        }
+  
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            Frm_Tipo_Transporte tipo_Transporte = new Frm_Tipo_Transporte();
-            tipo_Transporte.ShowDialog();
+            Frm_Entrega_Compra entrega_Compra = new Frm_Entrega_Compra();
+            entrega_Compra.ShowDialog();
         }
 
-        private void entregaDeProduccionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Entrega_Produccion entrega_Produccion = new Frm_Entrega_Produccion();
-            entrega_Produccion.ShowDialog();
-        }
-
-        private void entregaDeVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             Frm_Entrega_Venta entrega_Venta = new Frm_Entrega_Venta();
             entrega_Venta.ShowDialog();
         }
 
-        private void entregaDeCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        private void entregaDeProducciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Entrega_Compra entrega_Compra = new Frm_Entrega_Compra();
-            entrega_Compra.ShowDialog();
->>>>>>> 7a854db5bf034c096a7a2ee459a0f77d0e254ed1
+            Frm_Entrega_Produccion entrega_Produccion = new Frm_Entrega_Produccion();
+            entrega_Produccion.ShowDialog();
+        }
+
+        private void transportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Tipo_Transporte tipo_Transporte = new Frm_Tipo_Transporte();
+            tipo_Transporte.ShowDialog();
+        }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Compras_CXP compras = new Frm_Compras_CXP();
+            compras.ShowDialog();
         }
     }
 }
