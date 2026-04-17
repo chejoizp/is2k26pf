@@ -121,17 +121,14 @@
   <data name="icono_marca" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icono_marca.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="transporte" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transporte.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="loginlogistica" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\loginlogistica.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\login.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icono_bodega" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icono_bodega.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="orden" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\orden.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="paquete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paquete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,10 +172,10 @@
   <data name="icono_cuentas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icono_cuentas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="orden" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\orden.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="login" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\login.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="4105943-accounts-group-people-user-user-group-users_113923" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4105943-accounts-group-people-user-user-group-users_113923.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="transporte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transporte.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
