@@ -23,213 +23,435 @@ using Capa_vista_Factura;
 using Capa_Vista_OrdenDetalle;
 using Capa_Vista_Comprobantes;
 using Capa_Vista_Compras;
+using Capa_Controlador_Seguridad;
+using System.Drawing.Imaging;
 
 namespace Capa_Vista_Logista
 {
     public partial class Frm_MDI : Form
     {
+        private Cls_ControladorAsignacionUsuarioAplicacion controladorPermisos = new Cls_ControladorAsignacionUsuarioAplicacion();
+        private Cls_Asignacion_Permiso_PerfilControlador controladorPermisosPerfil = new Cls_Asignacion_Permiso_PerfilControlador();
+
+        public enum MenuOpciones
+        {
+            Archivo,
+            Catalogos,
+            Procesos,
+            Reportes,
+            Ayudas,
+            Seguridad
+        }
+
+        private Dictionary<MenuOpciones, ToolStripMenuItem> menuItems;
+
         public Frm_MDI()
         {
             InitializeComponent();
-        }
-        
+         
+            this.WindowState = FormWindowState.Maximized;
+            InicializarMenuItems();
+            fun_inicializar_botones_por_defecto();
 
-        private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-  
-
-        }
-
-        private void cuentaPorCobrarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Mantenimiento_Tipo_Op_CXC CXC = new Frm_Mantenimiento_Tipo_Op_CXC();
-            CXC.ShowDialog();
-        }
-
-        private void lineaDeProductoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Mantenimiento_LineaProducto LineaProducto = new Frm_Mantenimiento_LineaProducto();
-            LineaProducto.ShowDialog();
-        }
-
-        private void vendedoresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Vendedores vendedores = new Frm_Vendedores();
-            vendedores.ShowDialog();
+            this.Load += Frm_MDI_Load;
+            this.IsMdiContainer = true;
+    
         }
 
         private void Frm_MDI_Load(object sender, EventArgs e)
         {
+            toolStripStatusLabel.Text = $"Estado: Conectado | Usuario: {Capa_Controlador_Seguridad.Cls_Usuario_Conectado.sNombreUsuario}";
+            fun_inicializar_botones_por_defecto();
+            fun_habilitar_botones_por_permisos_combinados(
+                Cls_Usuario_Conectado.iIdUsuario,
+                Cls_Usuario_Conectado.iIdPerfil
+            );
+        }
 
+        private void InicializarMenuItems()
+        {
+            menuItems = new Dictionary<MenuOpciones, ToolStripMenuItem>
+            {
+                { MenuOpciones.Archivo, archivoToolStripMenuItem },
+                { MenuOpciones.Catalogos, catálogosToolStripMenuItem },
+                { MenuOpciones.Procesos, procesosToolStripMenuItem },
+                { MenuOpciones.Reportes, herramientasToolStripMenuItem },
+                { MenuOpciones.Ayudas, asignacionesToolStripMenuItem },
+                { MenuOpciones.Seguridad, seguridadToolStripMenuItem }
+            };
+        }
+
+        public void fun_inicializar_botones_por_defecto()
+        {
+            foreach (var opcion in menuItems.Keys)
+            {
+                switch (opcion)
+                {
+                    case MenuOpciones.Archivo:
+                    case MenuOpciones.Reportes:
+                    case MenuOpciones.Ayudas:
+                        menuItems[opcion].Enabled = true;
+                        break;
+                    default:
+                        menuItems[opcion].Enabled = false;
+                        break;
+                }
+            }
+        }
+
+        public void fun_habilitar_botones_por_permisos_combinados(int iIdUsuario, int iIdPerfil)
+        {
+            // CATÁLOGOS: 700-709
+            Dictionary<int, ToolStripMenuItem> mapaCatalogos = new Dictionary<int, ToolStripMenuItem>
+            {
+                {700, marcaToolStripMenuItem},
+                {701, vendedoresToolStripMenuItem},
+                {702, clientesToolStripMenuItem},
+                {703, proveedoresToolStripMenuItem},
+                {704, lineaDeProductoToolStripMenuItem},
+                {705, bodegaToolStripMenuItem},
+                {706, empresaTransporteToolStripMenuItem},
+                {707, movimientoOperacionToolStripMenuItem},
+                {708, cuentasPorPagarToolStripMenuItem},
+                {709, cuentaPorCobrarToolStripMenuItem}
+            };
+
+            // PROCESOS: 710-734 (agregar cuando estén listos)
+            Dictionary<int, ToolStripMenuItem> mapaProcesos = new Dictionary<int, ToolStripMenuItem>
+            {
+                // {710, movimientoDeInventariosToolStripMenuItem},
+                 {710, ventasToolStripMenuItem},
+                //{712, ordenDeProduccionToolStripMenuItem},
+                // {713, facturasToolStripMenuItem},
+                // {714, comprasToolStripMenuItem},
+                // {715, cuentasPorPagarToolStripMenuItem1},
+                // {716, detalleOrdenDeProduccionToolStripMenuItem},
+                 {711, cuentasPorCobrarToolStripMenuItem},
+                // {719, comprobanteCompraToolStripMenuItem},
+                // {720, comprobanteVentaToolStripMenuItem},
+                // {721, comprobanteProduccionToolStripMenuItem},
+                // {722, entregaDeProducciónToolStripMenuItem},
+                // {723, toolStripMenuItem3}, // Entrega de Venta
+                // {724, toolStripMenuItem4}, // Entrega de Compra
+                // {725, transportesToolStripMenuItem},
+                // {726, inventarioToolStripMenuItem},
+                // {727, sucursalesToolStripMenuItem},
+                {713, devoluconToolStripMenuItem}
+            };
+
+            foreach (var sub in mapaCatalogos.Values) sub.Enabled = false;
+            foreach (var sub in mapaProcesos.Values) sub.Enabled = false;
+            menuItems[MenuOpciones.Seguridad].Enabled = false;
+
+            DataTable dtPermisosPerfil = controladorPermisosPerfil.datObtenerPermisosPorPerfil(iIdPerfil);
+            foreach (DataRow row in dtPermisosPerfil.Rows)
+            {
+                int idModulo = Convert.ToInt32(row["iFk_id_modulo"]);
+                int idAplicacion = Convert.ToInt32(row["iFk_id_aplicacion"]);
+
+                if (idModulo == 44 && idAplicacion >= 700 && idAplicacion <= 734)
+                {
+                    if (mapaCatalogos.ContainsKey(idAplicacion))
+                        mapaCatalogos[idAplicacion].Enabled = true;
+                    if (mapaProcesos.ContainsKey(idAplicacion))
+                        mapaProcesos[idAplicacion].Enabled = true;
+                }
+
+                if (idModulo == 4 && idAplicacion == 309)
+                {
+                    menuItems[MenuOpciones.Seguridad].Enabled = true;
+                }
+            }
+
+            DataTable dtPermisosUsuario = controladorPermisos.ObtenerPermisosPorUsuario(iIdUsuario);
+            foreach (DataRow row in dtPermisosUsuario.Rows)
+            {
+                int idModulo = Convert.ToInt32(row["iFk_id_modulo"]);
+                int idAplicacion = Convert.ToInt32(row["iFk_id_aplicacion"]);
+
+                if (idModulo == 44 && idAplicacion >= 700 && idAplicacion <= 734)
+                {
+                    if (mapaCatalogos.ContainsKey(idAplicacion))
+                        mapaCatalogos[idAplicacion].Enabled = true;
+                    if (mapaProcesos.ContainsKey(idAplicacion))
+                        mapaProcesos[idAplicacion].Enabled = true;
+                }
+
+                if (idModulo == 4 && idAplicacion == 309)
+                {
+                    menuItems[MenuOpciones.Seguridad].Enabled = true;
+                }
+            }
+
+            menuItems[MenuOpciones.Catalogos].Enabled = mapaCatalogos.Values.Any(m => m.Enabled);
+            menuItems[MenuOpciones.Procesos].Enabled = mapaProcesos.Values.Any(m => m.Enabled);
+        }
+
+        private void CerrarFormulariosHijos()
+        {
+            foreach (Form childForm in this.MdiChildren)
+            {
+                childForm.Close();
+            }
+        }
+
+
+        private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Frm_LOGIN login = new Frm_LOGIN();
+            login.ShowDialog();
+            this.Close();
+        }
+
+        private void cuentaPorCobrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosHijos();
+            Frm_Mantenimiento_Tipo_Op_CXC CXC = new Frm_Mantenimiento_Tipo_Op_CXC();
+            CXC.MdiParent = this;
+            CXC.Show();
+        }
+
+        private void lineaDeProductoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosHijos();
+            Frm_Mantenimiento_LineaProducto LineaProducto = new Frm_Mantenimiento_LineaProducto();
+            LineaProducto.MdiParent = this;
+            LineaProducto.Show();
+        }
+
+        private void vendedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosHijos();
+            Frm_Vendedores vendedores = new Frm_Vendedores();
+            vendedores.MdiParent = this;
+            vendedores.Show();
         }
 
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_proveedores proveedores = new Frm_proveedores();
-            proveedores.ShowDialog();
+            proveedores.MdiParent = this;
+            proveedores.Show();
         }
 
         private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Clientes Clientes = new Frm_Clientes();
-            Clientes.ShowDialog();
+            Clientes.MdiParent = this;
+            Clientes.Show();
         }
 
         private void marcaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Marca Marca = new Frm_Marca();
-            Marca.ShowDialog();
-            
+            Marca.MdiParent = this;
+            Marca.Show();
         }
 
         private void empresaTransporteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Empresa_Transporte transporte = new Frm_Empresa_Transporte();
-            transporte.ShowDialog();
+            transporte.MdiParent = this;
+            transporte.Show();
         }
 
         private void reporteadorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Reportes Reporteador = new Frm_Reportes();
-            Reporteador.ShowDialog();
+            Reporteador.MdiParent = this;
+            Reporteador.Show();
         }
 
-        private void seguridadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Seguridad MDI_seguridad = new Frm_Seguridad();
-            MDI_seguridad.ShowDialog();
-        }
+
 
         private void bodegaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Bodega bodega = new Frm_Bodega();
-            bodega.ShowDialog();
+            bodega.MdiParent = this;
+            bodega.Show();
         }
 
         private void movimientoOperacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_mantenimiento_tipo_mov_inv Movimiento = new Frm_mantenimiento_tipo_mov_inv();
-            Movimiento.ShowDialog();
+            Movimiento.MdiParent = this;
+            Movimiento.Show();
         }
 
         private void cuentasPorPagarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Mantenimiento_cuentas_por_pagar CXP = new Frm_Mantenimiento_cuentas_por_pagar();
-            CXP.ShowDialog();
+            CXP.MdiParent = this;
+            CXP.Show();
         }
 
         private void pagosVentasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Pagos pagos = new Frm_Pagos();
-            pagos.ShowDialog();
+            pagos.MdiParent = this;
+            pagos.Show();
         }
 
         private void movimientoDeInventariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Encabezado_Transaccion Trans = new Frm_Encabezado_Transaccion();
-            Trans.ShowDialog();
+            Trans.MdiParent = this;
+            Trans.Show();
         }
 
         private void inventarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Inventario_Mantenimiento Inv = new Frm_Inventario_Mantenimiento();
-            Inv.ShowDialog();
+            Inv.MdiParent = this;
+            Inv.Show();
         }
-
-       
-
-        
 
         private void ordenDeProduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_OrdenProduccion_Encabezado Orden = new Frm_OrdenProduccion_Encabezado();
-            Orden.ShowDialog();
+            Orden.MdiParent = this;
+            Orden.Show();
         }
+
         private void ventasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Ventas ventas = new Frm_Ventas();
-            ventas.ShowDialog();
-
+            ventas.MdiParent = this;
+            ventas.Show();
         }
 
         private void sucursalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Sucursales sucursales = new Frm_Sucursales();
-            sucursales.ShowDialog();
+            sucursales.MdiParent = this;
+            sucursales.Show();
         }
 
         private void facturasToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_factura factura = new Frm_factura();
-            factura.ShowDialog();
+            factura.MdiParent = this;
+            factura.Show();
         }
 
         private void detalleOrdenDeProduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Orden_Produccion_Detalle OrdenProd = new Frm_Orden_Produccion_Detalle();
-            OrdenProd.ShowDialog();
-           
+            OrdenProd.MdiParent = this;
+            OrdenProd.Show();
         }
 
         private void cuentasPorCobrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Cuentaporcobrar CXC = new Frm_Cuentaporcobrar();
-            CXC.ShowDialog();
-
+            CXC.MdiParent = this;
+            CXC.Show();
         }
 
         private void devoluconToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Devolucion devolucion = new Frm_Devolucion();
-            devolucion.ShowDialog();
+            devolucion.MdiParent = this;
+            devolucion.Show();
         }
 
         private void comprobanteCompraToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Comprobante_Compra com_compra = new Frm_Comprobante_Compra();
-            com_compra.ShowDialog();
+            com_compra.MdiParent = this;
+            com_compra.Show();
         }
 
         private void comprobanteVentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Comprobante_Venta com_venta = new Frm_Comprobante_Venta();
-            com_venta.ShowDialog();
+            com_venta.MdiParent = this;
+            com_venta.Show();
         }
 
         private void comprobanteProduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Comprobante_Produccion com_prod = new Frm_Comprobante_Produccion();
-            com_prod.ShowDialog();
+            com_prod.MdiParent = this;
+            com_prod.Show();
         }
-  
+
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Entrega_Compra entrega_Compra = new Frm_Entrega_Compra();
-            entrega_Compra.ShowDialog();
+            entrega_Compra.MdiParent = this;
+            entrega_Compra.Show();
         }
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Entrega_Venta entrega_Venta = new Frm_Entrega_Venta();
-            entrega_Venta.ShowDialog();
+            entrega_Venta.MdiParent = this;
+            entrega_Venta.Show();
         }
 
         private void entregaDeProducciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Entrega_Produccion entrega_Produccion = new Frm_Entrega_Produccion();
-            entrega_Produccion.ShowDialog();
+            entrega_Produccion.MdiParent = this;
+            entrega_Produccion.Show();
         }
 
         private void transportesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Tipo_Transporte tipo_Transporte = new Frm_Tipo_Transporte();
-            tipo_Transporte.ShowDialog();
+            tipo_Transporte.MdiParent = this;
+            tipo_Transporte.Show();
         }
 
         private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            CerrarFormulariosHijos();
             Frm_Compras_CXP compras = new Frm_Compras_CXP();
-            compras.ShowDialog();
+            compras.MdiParent = this;
+            compras.Show();
+        }
+
+        private void bitacoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosHijos();
+            Frm_Bitacora bitacora = new Frm_Bitacora();
+            bitacora.MdiParent = this;
+            bitacora.Show();
+        }
+
+        private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosHijos();
+            Frm_cambiar_contrasena cambiar_Contrasena = new Frm_cambiar_contrasena(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario);
+            cambiar_Contrasena.MdiParent = this;
+            cambiar_Contrasena.Show();
         }
     }
 }
