@@ -119,7 +119,7 @@ namespace Capa_Vista_Logista
             // PROCESOS: 710-734 (agregar cuando estén listos)
             Dictionary<int, ToolStripMenuItem> mapaProcesos = new Dictionary<int, ToolStripMenuItem>
             {
-                // {710, movimientoDeInventariosToolStripMenuItem},
+                {728, movimientoDeInventariosToolStripMenuItem},
                  {710, ventasToolStripMenuItem},
                 //{712, ordenDeProduccionToolStripMenuItem},
                 // {713, facturasToolStripMenuItem},
@@ -134,7 +134,7 @@ namespace Capa_Vista_Logista
                 // {723, toolStripMenuItem3}, // Entrega de Venta
                 // {724, toolStripMenuItem4}, // Entrega de Compra
                 // {725, transportesToolStripMenuItem},
-                // {726, inventarioToolStripMenuItem},
+                {726, inventarioToolStripMenuItem},
                 // {727, sucursalesToolStripMenuItem},
                 {713, devoluconToolStripMenuItem}
             };

@@ -31,6 +31,7 @@ namespace Capa_Vista_Mov_Inv
         {
             Cbo_Id_Movimiento.Enabled = false;
             CBO_ID_Tipo_Movimiento.Enabled = false;
+            Cbo_IDBodega.Enabled = false;
             DTP_FECHA_Movimiento.Enabled = false;
             txt_descripcion.Enabled = false;
             Cbo_ID_Inventario.Enabled = false;
@@ -58,6 +59,7 @@ namespace Capa_Vista_Mov_Inv
         {
             Cbo_Id_Movimiento.Enabled = true;
             CBO_ID_Tipo_Movimiento.Enabled = true;
+            Cbo_IDBodega.Enabled = true;
             DTP_FECHA_Movimiento.Enabled = true;
             txt_descripcion.Enabled = true;
             Cbo_ID_Inventario.Enabled = true;
@@ -117,6 +119,12 @@ namespace Capa_Vista_Mov_Inv
             Cbo_ID_Inventario.DisplayMember = "INVENTARIO";
             Cbo_ID_Inventario.ValueMember = "pk_inventario_id";
             Cbo_ID_Inventario.SelectedIndex = -1;
+
+            DataTable dtIdBod = ctrl.fun_CargarIdBodega();
+            Cbo_IDBodega.DataSource = dtIdBod;
+            Cbo_IDBodega.DisplayMember = "BODEGA";
+            Cbo_IDBodega.ValueMember = "Pk_Id_Bodega";
+            Cbo_IDBodega.SelectedIndex = -1;
         }
         
         private void Btn_Agregar_Detalle_Click(object sender, EventArgs e)
@@ -194,5 +202,92 @@ namespace Capa_Vista_Mov_Inv
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void verificar_controles()
+        {
+            // Validaciones
+
+            if (Cbo_Id_Movimiento.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona un id de movimiento valido", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (Cbo_IDBodega.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona un id de bodega valido", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (CBO_ID_Tipo_Movimiento.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona un tipo de movimiento", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txt_descripcion.Text))
+            {
+                MessageBox.Show("Ingresa una descripción", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (DGV_DETALLE_MOVIMIENTO.Rows.Count == 0)
+            {
+                MessageBox.Show("Agrega al menos un producto al detalle", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+      
+
+        private void btn_Guardar_Click(object sender, EventArgs e)
+        {
+
+            verificar_controles();
+
+            int idBodega = Convert.ToInt32(Cbo_IDBodega.SelectedValue);
+            int idTipoMovimiento = Convert.ToInt32(CBO_ID_Tipo_Movimiento.SelectedValue);
+            DateTime fechaMovimiento = DTP_FECHA_Movimiento.Value;
+            string descripcion = txt_descripcion.Text.Trim();
+
+            // Capturar detalle del DGV en una lista
+            List<(int idInventario, float cantidad)> detalle = new List<(int, float)>();
+            foreach (DataGridViewRow fila in DGV_DETALLE_MOVIMIENTO.Rows)
+            {
+                // Ignora la fila vacía del DGV (la que tiene *)
+                if (fila.IsNewRow) continue;
+
+                // También verifica que las celdas no sean null
+                if (fila.Cells[0].Value == null || fila.Cells[2].Value == null) continue;
+
+                int idInventario = Convert.ToInt32(fila.Cells[0].Value);   // Celda 0 = ID Producto
+                float cantidad = Convert.ToSingle(fila.Cells[2].Value);     // Celda 2 = Cantidad
+                detalle.Add((idInventario, cantidad));
+            }
+
+            bool resultado = ctrl.fun_GuardarMovimiento(idBodega, idTipoMovimiento, fechaMovimiento, descripcion, detalle);
+
+            if (resultado)
+            {
+                MessageBox.Show("Movimiento guardado correctamente", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarControlesEncabezado();
+                LimpiarControlesDetalle();
+            }
+            else
+            {
+                MessageBox.Show("Error al guardar el movimiento", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
     }
-}
+    }
+

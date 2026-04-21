@@ -30,5 +30,27 @@ namespace Capa_Controlador_Mov_Inv
             DataTable dtIdInv = Dao.fun_ObtenerInventario();
             return dtIdInv;
         }
+
+        public DataTable fun_CargarIdBodega()
+        {
+            DataTable dtIdbod = Dao.fun_ObtenerBodega();
+            return dtIdbod;
+        }
+
+        public bool fun_GuardarMovimiento(int idBodega, int idTipoMovimiento, DateTime fechaMovimiento,
+                                   string descripcion, List<(int idInventario, float cantidad)> detalle)
+        {
+            try
+            {
+                bool resultado = Dao.fun_InsertarMovimientoCompleto(idTipoMovimiento, fechaMovimiento,
+                                                                    descripcion, detalle);
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en controlador: " + ex.Message);
+                return false;
+            }
+        }
     }
 }
