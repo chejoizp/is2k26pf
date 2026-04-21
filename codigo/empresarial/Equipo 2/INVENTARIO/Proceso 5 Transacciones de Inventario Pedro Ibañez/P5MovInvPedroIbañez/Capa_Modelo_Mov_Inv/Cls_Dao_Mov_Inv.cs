@@ -99,6 +99,109 @@ namespace Capa_Modelo_Mov_Inv
 
             return dtResultado;
         }
+        //================================================
+        // Obtener Bodegas
+        public DataTable fun_ObtenerBodega()
+        {
+            DataTable dtResultado = new DataTable();
+            string sQuery = @"SELECT 
+                    Pk_Id_Bodega,
+                    CONCAT(Pk_Id_Bodega, ' - ', Cmp_Nombre_Bodega) AS BODEGA
+                    FROM tbl_bodega; ";
 
+            try
+            {
+                using (OdbcConnection oConn = conexion.oConexion())
+                {
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
+                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(oCmd))
+                    {
+                        oDa.Fill(dtResultado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener las bodegas: " + ex.Message);
+            }
+
+            return dtResultado;
+        }
+
+
+        public bool fun_InsertarMovimientoCompleto(int idTipoMov, DateTime fechaMov, string descripcion,
+                                            List<(int idInventario, float cantidad)> detalle)
+        {
+            bool resultado = false;
+
+            string sQueryEncabezado = @"INSERT INTO tbl_movimiento_inventario_encabezado 
+                                (fk_tipo_movimiento_id, fecha_transaccion, descripcion) 
+                                VALUES (?, ?, ?)";
+
+            string sQueryDetalle = @"INSERT INTO tbl_movimiento_inventario_detalle 
+                            (fk_movimiento_id, fk_inventario_id, cantidad_transaccionada) 
+                            VALUES (?, ?, ?)";
+
+            try
+            {
+                using (OdbcConnection oConn = conexion.oConexion())
+                {
+                    oConn.Open();
+
+                    // Iniciar transacción
+                    OdbcTransaction transaccion = oConn.BeginTransaction();
+
+                    try
+                    {
+                        //  Insertar encabezado
+                        int idMovimientoGenerado = 0;
+                        using (OdbcCommand oCmdEnc = new OdbcCommand(sQueryEncabezado, oConn, transaccion))
+                        {
+                            oCmdEnc.Parameters.AddWithValue("?", idTipoMov);
+                            oCmdEnc.Parameters.AddWithValue("?", fechaMov.ToString("yyyy-MM-dd HH:mm:ss"));
+                            oCmdEnc.Parameters.AddWithValue("?", descripcion);
+                            oCmdEnc.ExecuteNonQuery();
+                        }
+
+                        //  Obtener ID generado del encabezado
+                        using (OdbcCommand oCmdId = new OdbcCommand("SELECT LAST_INSERT_ID()", oConn, transaccion))
+                        {
+                            idMovimientoGenerado = Convert.ToInt32(oCmdId.ExecuteScalar());
+                        }
+
+                        //  Insertar cada fila del detalle
+                        foreach (var item in detalle)
+                        {
+                            using (OdbcCommand oCmdDet = new OdbcCommand(sQueryDetalle, oConn, transaccion))
+                            {
+                                oCmdDet.Parameters.AddWithValue("?", idMovimientoGenerado);
+                                oCmdDet.Parameters.AddWithValue("?", item.idInventario);
+                                oCmdDet.Parameters.AddWithValue("?", item.cantidad);
+                                oCmdDet.ExecuteNonQuery();
+                            }
+                        }
+
+                        //  Si todo salió bien, confirmar transacción
+                        transaccion.Commit();
+                        resultado = true;
+                        Console.WriteLine("Transacción completada. ID movimiento: " + idMovimientoGenerado);
+                    }
+                    catch (Exception ex)
+                    {
+                        //  Si algo falló, revertir TODO incluyendo el encabezado
+                        transaccion.Rollback();
+                        Console.WriteLine("Rollback ejecutado. Error: " + ex.Message);
+                        resultado = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error de conexión: " + ex.Message);
+            }
+
+            return resultado;
+        }
     }
 }
