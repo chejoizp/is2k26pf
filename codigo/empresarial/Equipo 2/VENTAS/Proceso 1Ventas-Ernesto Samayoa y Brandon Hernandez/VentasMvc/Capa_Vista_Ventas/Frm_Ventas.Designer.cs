@@ -31,7 +31,6 @@ namespace Capa_Vista_Ventas
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ventas));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.GB_Ventas = new System.Windows.Forms.GroupBox();
             this.Txt_Saldo_total = new System.Windows.Forms.TextBox();
@@ -48,9 +47,9 @@ namespace Capa_Vista_Ventas
             this.Lbl_Fecha_Venta = new System.Windows.Forms.Label();
             this.Lbl_Id_Cliente = new System.Windows.Forms.Label();
             this.Lbl_IDVenta = new System.Windows.Forms.Label();
+            this.Btn_detalle_venta = new System.Windows.Forms.Button();
             this.Btn_Remover_Detalle = new System.Windows.Forms.Button();
             this.Btn_Guardar_Ventas = new System.Windows.Forms.Button();
-            this.Btn_Limpiar_Ventas = new System.Windows.Forms.Button();
             this.Btn_buscar_Ventas = new System.Windows.Forms.Button();
             this.Btn_Salir = new System.Windows.Forms.Button();
             this.Btn_Modificar_Ventas = new System.Windows.Forms.Button();
@@ -58,10 +57,10 @@ namespace Capa_Vista_Ventas
             this.Btn_Ayuda = new System.Windows.Forms.Button();
             this.Btn_Cancelar_Ventas = new System.Windows.Forms.Button();
             this.Btn_Agregar_Ventas = new System.Windows.Forms.Button();
-            this.Btn_detalle_venta = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.GB_Ventas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,16 +73,6 @@ namespace Capa_Vista_Ventas
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1215, 98);
             this.panel1.TabIndex = 31;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Capa_Vista_Ventas.Properties.Resources.shopping_commerce_flower_supermarket_sale_cart_icon_255564;
-            this.pictureBox1.Location = new System.Drawing.Point(132, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(81, 74);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -269,11 +258,25 @@ namespace Capa_Vista_Ventas
             this.Lbl_IDVenta.TabIndex = 0;
             this.Lbl_IDVenta.Text = "Id Venta:";
             // 
+            // Btn_detalle_venta
+            // 
+            this.Btn_detalle_venta.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Btn_detalle_venta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_detalle_venta.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_detalle_venta.Location = new System.Drawing.Point(13, 450);
+            this.Btn_detalle_venta.Name = "Btn_detalle_venta";
+            this.Btn_detalle_venta.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Btn_detalle_venta.Size = new System.Drawing.Size(171, 50);
+            this.Btn_detalle_venta.TabIndex = 165;
+            this.Btn_detalle_venta.Text = "Detalle Venta";
+            this.Btn_detalle_venta.UseVisualStyleBackColor = false;
+            this.Btn_detalle_venta.Click += new System.EventHandler(this.Btn_detalle_venta_Click);
+            // 
             // Btn_Remover_Detalle
             // 
             this.Btn_Remover_Detalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Remover_Detalle.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Remover_Detalle.Image")));
-            this.Btn_Remover_Detalle.Location = new System.Drawing.Point(611, 120);
+            this.Btn_Remover_Detalle.Location = new System.Drawing.Point(495, 120);
             this.Btn_Remover_Detalle.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Remover_Detalle.Name = "Btn_Remover_Detalle";
             this.Btn_Remover_Detalle.Size = new System.Drawing.Size(111, 98);
@@ -287,7 +290,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Guardar_Ventas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Btn_Guardar_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Guardar_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar_Ventas.Image")));
-            this.Btn_Guardar_Ventas.Location = new System.Drawing.Point(135, 120);
+            this.Btn_Guardar_Ventas.Location = new System.Drawing.Point(257, 120);
             this.Btn_Guardar_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Guardar_Ventas.Name = "Btn_Guardar_Ventas";
             this.Btn_Guardar_Ventas.Size = new System.Drawing.Size(111, 98);
@@ -296,24 +299,11 @@ namespace Capa_Vista_Ventas
             this.Btn_Guardar_Ventas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Guardar_Ventas.UseVisualStyleBackColor = false;
             // 
-            // Btn_Limpiar_Ventas
-            // 
-            this.Btn_Limpiar_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Limpiar_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Limpiar_Ventas.Image")));
-            this.Btn_Limpiar_Ventas.Location = new System.Drawing.Point(373, 120);
-            this.Btn_Limpiar_Ventas.Margin = new System.Windows.Forms.Padding(4);
-            this.Btn_Limpiar_Ventas.Name = "Btn_Limpiar_Ventas";
-            this.Btn_Limpiar_Ventas.Size = new System.Drawing.Size(111, 98);
-            this.Btn_Limpiar_Ventas.TabIndex = 40;
-            this.Btn_Limpiar_Ventas.Text = "LIMPIAR";
-            this.Btn_Limpiar_Ventas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Btn_Limpiar_Ventas.UseVisualStyleBackColor = true;
-            // 
             // Btn_buscar_Ventas
             // 
             this.Btn_buscar_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_buscar_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_buscar_Ventas.Image")));
-            this.Btn_buscar_Ventas.Location = new System.Drawing.Point(730, 120);
+            this.Btn_buscar_Ventas.Location = new System.Drawing.Point(614, 120);
             this.Btn_buscar_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_buscar_Ventas.Name = "Btn_buscar_Ventas";
             this.Btn_buscar_Ventas.Size = new System.Drawing.Size(111, 98);
@@ -327,7 +317,7 @@ namespace Capa_Vista_Ventas
             this.Btn_Salir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Btn_Salir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Salir.Image")));
-            this.Btn_Salir.Location = new System.Drawing.Point(1087, 120);
+            this.Btn_Salir.Location = new System.Drawing.Point(971, 120);
             this.Btn_Salir.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Salir.Name = "Btn_Salir";
             this.Btn_Salir.Size = new System.Drawing.Size(111, 98);
@@ -340,7 +330,7 @@ namespace Capa_Vista_Ventas
             // 
             this.Btn_Modificar_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Modificar_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Modificar_Ventas.Image")));
-            this.Btn_Modificar_Ventas.Location = new System.Drawing.Point(254, 120);
+            this.Btn_Modificar_Ventas.Location = new System.Drawing.Point(135, 120);
             this.Btn_Modificar_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Modificar_Ventas.Name = "Btn_Modificar_Ventas";
             this.Btn_Modificar_Ventas.Size = new System.Drawing.Size(111, 98);
@@ -353,7 +343,7 @@ namespace Capa_Vista_Ventas
             // 
             this.Btn_Reporte_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Reporte_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte_Ventas.Image")));
-            this.Btn_Reporte_Ventas.Location = new System.Drawing.Point(849, 120);
+            this.Btn_Reporte_Ventas.Location = new System.Drawing.Point(733, 120);
             this.Btn_Reporte_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Reporte_Ventas.Name = "Btn_Reporte_Ventas";
             this.Btn_Reporte_Ventas.Size = new System.Drawing.Size(111, 98);
@@ -366,7 +356,7 @@ namespace Capa_Vista_Ventas
             // 
             this.Btn_Ayuda.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Ayuda.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Ayuda.Image")));
-            this.Btn_Ayuda.Location = new System.Drawing.Point(968, 120);
+            this.Btn_Ayuda.Location = new System.Drawing.Point(852, 120);
             this.Btn_Ayuda.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Ayuda.Name = "Btn_Ayuda";
             this.Btn_Ayuda.Size = new System.Drawing.Size(111, 98);
@@ -379,7 +369,7 @@ namespace Capa_Vista_Ventas
             // 
             this.Btn_Cancelar_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Cancelar_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Cancelar_Ventas.Image")));
-            this.Btn_Cancelar_Ventas.Location = new System.Drawing.Point(492, 120);
+            this.Btn_Cancelar_Ventas.Location = new System.Drawing.Point(376, 120);
             this.Btn_Cancelar_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Cancelar_Ventas.Name = "Btn_Cancelar_Ventas";
             this.Btn_Cancelar_Ventas.Size = new System.Drawing.Size(111, 98);
@@ -401,31 +391,26 @@ namespace Capa_Vista_Ventas
             this.Btn_Agregar_Ventas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Agregar_Ventas.UseVisualStyleBackColor = true;
             // 
-            // Btn_detalle_venta
+            // pictureBox1
             // 
-            this.Btn_detalle_venta.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.Btn_detalle_venta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_detalle_venta.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Btn_detalle_venta.Location = new System.Drawing.Point(13, 450);
-            this.Btn_detalle_venta.Name = "Btn_detalle_venta";
-            this.Btn_detalle_venta.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Btn_detalle_venta.Size = new System.Drawing.Size(171, 50);
-            this.Btn_detalle_venta.TabIndex = 165;
-            this.Btn_detalle_venta.Text = "Detalle Venta";
-            this.Btn_detalle_venta.UseVisualStyleBackColor = false;
-            this.Btn_detalle_venta.Click += new System.EventHandler(this.Btn_detalle_venta_Click);
+            this.pictureBox1.Image = global::Capa_Vista_Ventas.Properties.Resources.shopping_commerce_flower_supermarket_sale_cart_icon_255564;
+            this.pictureBox1.Location = new System.Drawing.Point(132, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(81, 74);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
             // 
             // Frm_Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1216, 561);
+            this.ClientSize = new System.Drawing.Size(1137, 561);
             this.Controls.Add(this.Btn_detalle_venta);
             this.Controls.Add(this.GB_Ventas);
             this.Controls.Add(this.Btn_Remover_Detalle);
             this.Controls.Add(this.Btn_Guardar_Ventas);
-            this.Controls.Add(this.Btn_Limpiar_Ventas);
             this.Controls.Add(this.Btn_buscar_Ventas);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Modificar_Ventas);
@@ -440,9 +425,9 @@ namespace Capa_Vista_Ventas
             this.Load += new System.EventHandler(this.Frm_Ventas_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.GB_Ventas.ResumeLayout(false);
             this.GB_Ventas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -458,7 +443,6 @@ namespace Capa_Vista_Ventas
         private System.Windows.Forms.Button Btn_Reporte_Ventas;
         private System.Windows.Forms.Button Btn_Ayuda;
         private System.Windows.Forms.Button Btn_Cancelar_Ventas;
-        private System.Windows.Forms.Button Btn_Limpiar_Ventas;
         private System.Windows.Forms.Button Btn_Guardar_Ventas;
         private System.Windows.Forms.Button Btn_Remover_Detalle;
         private System.Windows.Forms.GroupBox GB_Ventas;
