@@ -411,5 +411,13 @@ namespace Capa_Vista_Logista
             cambiar_Contrasena.MdiParent = this;
             cambiar_Contrasena.Show();
         }
+
+        private void asignaciónVendedorClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Asignacion_Clientes asig_clientes = new Frm_Asignacion_Clientes();
+            asig_clientes.MdiParent = this;
+            asig_clientes.Show();
+
+        }
     }
 }
