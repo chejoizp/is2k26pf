@@ -39,7 +39,7 @@ namespace Capa_Vista_Ventas
                     "Dirección",
                     "Estado Sucursal"
                 };
-            int id_aplicacion = 714;
+            int id_aplicacion = 727;
             int id_Modulo = 44;
             navegador1.IPkId_Aplicacion = id_aplicacion;
             navegador1.IPkId_Modulo = id_Modulo;
