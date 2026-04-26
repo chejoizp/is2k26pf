@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Vista_Bodegaa">
+    <Reference Include="Capa_Vista_Bodegaa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Capa_Vista_Bodegaa\bin\Debug\Capa_Vista_Bodegaa.dll</HintPath>
     </Reference>
     <Reference Include="System" />

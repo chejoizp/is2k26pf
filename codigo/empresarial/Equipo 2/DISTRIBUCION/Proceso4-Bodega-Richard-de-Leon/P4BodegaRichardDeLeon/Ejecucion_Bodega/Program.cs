@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Vista_Bodegaa;
+using Capa_Vista_Bodega;
 
 namespace Ejecucion_Bodega
 {
@@ -17,7 +18,7 @@ namespace Ejecucion_Bodega
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Bodega());
+            Application.Run(new Frm_Comprobante_Compra());
         }
     }
 }

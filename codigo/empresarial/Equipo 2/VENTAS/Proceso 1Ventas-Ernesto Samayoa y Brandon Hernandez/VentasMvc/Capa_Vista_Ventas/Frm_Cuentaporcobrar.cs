@@ -17,10 +17,17 @@ namespace Capa_Vista_Ventas
             InitializeComponent();
         }
 
-        private void Btn_CXCDetalle_Click(object sender, EventArgs e)
+  
+
+        private void Btn_Salir_Click(object sender, EventArgs e)
         {
-            Frm_CXC_Detalle detalle = new Frm_CXC_Detalle() ;
- 
+            this.Close();
+        }
+
+        private void Btn_Agregar_Ventas_Click(object sender, EventArgs e)
+        {
+            Frm_CXC_Detalle detalle = new Frm_CXC_Detalle();
+
             detalle.ShowDialog();
         }
     }

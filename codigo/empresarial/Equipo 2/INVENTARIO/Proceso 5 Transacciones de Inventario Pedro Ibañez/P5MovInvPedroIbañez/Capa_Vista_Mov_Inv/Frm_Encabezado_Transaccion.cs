@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Mov_Inv;
+using Capa_Modelo_Mov_Inv;
 
 namespace Capa_Vista_Mov_Inv
 {
@@ -31,11 +32,11 @@ namespace Capa_Vista_Mov_Inv
         {
             Cbo_Id_Movimiento.Enabled = false;
             CBO_ID_Tipo_Movimiento.Enabled = false;
+            Cbo_IDBodega.Enabled = false;
             DTP_FECHA_Movimiento.Enabled = false;
             txt_descripcion.Enabled = false;
             Cbo_ID_Inventario.Enabled = false;
             NUD_Cant_mov.Enabled = false;
-
         }
 
         private void EstadoInicialBotones()
@@ -48,21 +49,19 @@ namespace Capa_Vista_Mov_Inv
             Btn_Reporte.Enabled = true;
             Btn_Ayuda.Enabled = true;
             btn_Guardar.Enabled = false;
-
             Btn_Agregar_Detalle.Enabled = false;
             Btn_Remover_Detalle.Enabled = false;
-            BTN_LIMPIAR_DETALE.Enabled = false;
         }
 
         private void EstadoControlesUso()
         {
             Cbo_Id_Movimiento.Enabled = true;
             CBO_ID_Tipo_Movimiento.Enabled = true;
+            Cbo_IDBodega.Enabled = true;
             DTP_FECHA_Movimiento.Enabled = true;
             txt_descripcion.Enabled = true;
             Cbo_ID_Inventario.Enabled = true;
             NUD_Cant_mov.Enabled = true;
-
         }
 
         private void EstadoBotonesUso()
@@ -75,10 +74,8 @@ namespace Capa_Vista_Mov_Inv
             Btn_Reporte.Enabled = false;
             Btn_Ayuda.Enabled = false;
             btn_Guardar.Enabled = true;
-
             Btn_Agregar_Detalle.Enabled = true;
             Btn_Remover_Detalle.Enabled = true;
-            BTN_LIMPIAR_DETALE.Enabled = true;
         }
 
         private void LimpiarControlesEncabezado()
@@ -92,9 +89,10 @@ namespace Capa_Vista_Mov_Inv
 
         private void LimpiarControlesDetalle()
         {
+            Cbo_IDBodega.SelectedIndex = -1;
             Cbo_ID_Inventario.SelectedIndex = -1;
             NUD_Cant_mov.Value = 1;
-            DGV_DETALLE_MOVIMIENTO.Rows.Clear();
+            
         }
 
         //Cargar ComBoBoxes
@@ -112,46 +110,20 @@ namespace Capa_Vista_Mov_Inv
             CBO_ID_Tipo_Movimiento.ValueMember = "pk_tipo_movimiento_id";
             CBO_ID_Tipo_Movimiento.SelectedIndex = -1;
 
+            DataTable dtIdBod = ctrl.fun_CargarIdBodega();
+            Cbo_IDBodega.DataSource = dtIdBod;
+            Cbo_IDBodega.DisplayMember = "BODEGA";
+            Cbo_IDBodega.ValueMember = "Pk_Id_Bodega";
+            Cbo_IDBodega.SelectedIndex = -1;
+
             DataTable dtIdInv = ctrl.fun_CargarIdInventario();
+            Cbo_ID_Inventario.DataSource = dtIdInv;
             Cbo_ID_Inventario.DataSource = dtIdInv;
             Cbo_ID_Inventario.DisplayMember = "INVENTARIO";
             Cbo_ID_Inventario.ValueMember = "pk_inventario_id";
             Cbo_ID_Inventario.SelectedIndex = -1;
         }
-        
-        private void Btn_Agregar_Detalle_Click(object sender, EventArgs e)
-        {
-                if (Cbo_ID_Inventario.SelectedItem == null)
-                {
-                    MessageBox.Show("Selecciona un producto", "Aviso",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
 
-            if (NUD_Cant_mov.Value>5000)
-            {
-                MessageBox.Show("Valor de cantidad no puede ser mayor a 5000", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Capturar el ID (ValueMember)
-            int idProducto = Convert.ToInt32(Cbo_ID_Inventario.SelectedValue);
-
-            // Capturar el Nombre (DisplayMember)
-            DataRowView filaSeleccionada = (DataRowView)Cbo_ID_Inventario.SelectedItem;
-            string nombreProducto = filaSeleccionada["INVENTARIO"].ToString();
-
-            // Capturar cantidad
-            int cantidad = (int)NUD_Cant_mov.Value;
-
-            // Agregar fila al DataGridView con las 3 columnas: ID, Nombre, Cantidad
-            DGV_DETALLE_MOVIMIENTO.Rows.Add(idProducto, nombreProducto, cantidad);
-
-            // Limpiar controles
-            Cbo_ID_Inventario.SelectedIndex = -1;
-            NUD_Cant_mov.Value = 1;
-        }
 
         private void btn_buscar_Click(object sender, EventArgs e)
         {
@@ -169,24 +141,132 @@ namespace Capa_Vista_Mov_Inv
             LimpiarControlesEncabezado();
         }
 
-        private void BTN_LIMPIAR_DETALE_Click(object sender, EventArgs e)
-        {
-            LimpiarControlesDetalle();
-        }
 
         private void Btn_Cancelar_Click(object sender, EventArgs e)
         {
             EstadoInicialControles();
             EstadoInicialBotones();
             LimpiarControlesEncabezado();
+        }
+
+
+        private bool verificar_controles()
+        {
+            // Validaciones
+
+            if (CBO_ID_Tipo_Movimiento.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona un tipo de movimiento", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txt_descripcion.Text))
+            {
+                MessageBox.Show("Ingresa una descripción", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+
+        private void btn_Guardar_Click(object sender, EventArgs e)
+        {
+
+            verificar_controles();
+
+            int idTipoMovimiento = Convert.ToInt32(CBO_ID_Tipo_Movimiento.SelectedValue);
+            DateTime fechaMovimiento = DTP_FECHA_Movimiento.Value;
+            string descripcion = txt_descripcion.Text.Trim();
+
+            // Capturar detalle del DGV en una lista
+            List<(int idInventario, int idBodega, float cantidad)> detalle = new List<(int, int, float)>();
+            foreach (DataGridViewRow fila in DGV_DETALLE_MOVIMIENTO.Rows)
+            {
+                // Ignora la fila vacía del DGV (la que tiene *)
+                if (fila.IsNewRow) continue;
+
+                // También verifica que las celdas no sean null
+                if (fila.Cells[0].Value == null || fila.Cells[2].Value == null || fila.Cells[4].Value == null) continue;
+
+                int idInventario = Convert.ToInt32(fila.Cells[0].Value);   // Celda 0 = ID Producto
+                int idBodega = Convert.ToInt32(fila.Cells[2].Value);   // Celda 2 = ID Bodega
+                float cantidad = Convert.ToSingle(fila.Cells[4].Value);     // Celda 4 = Cantidad
+                detalle.Add((idInventario, idBodega, cantidad));
+            }
+
+            bool resultado = ctrl.fun_GuardarMovimiento( idTipoMovimiento, fechaMovimiento, descripcion, detalle);
+
+            if (resultado)
+            {
+                MessageBox.Show("Movimiento guardado correctamente", "Éxito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarControlesEncabezado();
+                LimpiarControlesDetalle();
+                DGV_DETALLE_MOVIMIENTO.Rows.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Error al guardar el movimiento", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void Btn_Agregar_Detalle_Click(object sender, EventArgs e)
+        {
+            if (Cbo_ID_Inventario.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona un producto", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (Cbo_IDBodega.SelectedItem == null)
+            {
+                MessageBox.Show("Selecciona una bodega", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (NUD_Cant_mov.Value > 5000)
+            {
+                MessageBox.Show("Valor de cantidad no puede ser mayor a 5000", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Capturar ID y Nombre del inventario
+            int idProducto = Convert.ToInt32(Cbo_ID_Inventario.SelectedValue);
+            DataRowView filaInventario = (DataRowView)Cbo_ID_Inventario.SelectedItem;
+            string nombreProducto = filaInventario["INVENTARIO"].ToString();
+
+            // Capturar ID y Nombre de la bodega corregido
+            int idBodega = Convert.ToInt32(Cbo_IDBodega.SelectedValue);
+            DataRowView filaBodega = (DataRowView)Cbo_IDBodega.SelectedItem;
+            string nombreBodega = filaBodega["BODEGA"].ToString();
+
+            // Capturar cantidad
+            int cantidad = (int)NUD_Cant_mov.Value;
+
+            // Agregar fila al DataGridView
+            DGV_DETALLE_MOVIMIENTO.Rows.Add(idProducto, nombreProducto, idBodega, nombreBodega, cantidad);
+
             LimpiarControlesDetalle();
         }
+
 
         private void Btn_Remover_Detalle_Click(object sender, EventArgs e)
         {
             if (DGV_DETALLE_MOVIMIENTO.SelectedRows.Count > 0)
             {
-                DGV_DETALLE_MOVIMIENTO.Rows.Remove(DGV_DETALLE_MOVIMIENTO.SelectedRows[0]);
+                DataGridViewRow filaSeleccionada = DGV_DETALLE_MOVIMIENTO.SelectedRows[0];
+
+                // Verificar que no sea la fila nueva vacía del DGV
+                if (!filaSeleccionada.IsNewRow)
+                {
+                    DGV_DETALLE_MOVIMIENTO.Rows.Remove(filaSeleccionada);
+                }
             }
             else
             {
@@ -194,5 +274,15 @@ namespace Capa_Vista_Mov_Inv
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void BTN_LIMPIAR_DETALE_Click(object sender, EventArgs e)
+        {
+            LimpiarControlesDetalle();
+        }
     }
-}
+    }
+
+
+
+
+

@@ -41,11 +41,15 @@
     <Reference Include="Capa_Vista_Compras">
       <HintPath>..\..\COMPRAS\Proceso 2 compras Danilo\Compras\Capa_Vista_Compras\bin\Debug\Capa_Vista_Compras.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Vista_Empresa_Transporte">
-      <HintPath>..\..\DISTRIBUCION\Proceso4 Mantenimiento Transporte Sergio Izeppi\Capa_Vista_Empresa_Transporte\Capa_Vista_Empresa_Transporte\bin\Debug\Capa_Vista_Empresa_Transporte.dll</HintPath>
+    <Reference Include="Capa_Vista_Comprobantes">
+      <HintPath>..\..\DISTRIBUCION\Proceso4-Comprobantes-Richard-de-Leon\Capa_Vista_Comprobantes\bin\Debug\Capa_Vista_Comprobantes.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Empresa_Transporte, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\DISTRIBUCION\Proceso4 Mantenimiento Transporte Sergio Izeppi\Proceso4_Transporte\Capa_Vista_Empresa_Transporte\bin\Debug\Capa_Vista_Empresa_Transporte.dll</HintPath>
     </Reference>
     <Reference Include="Capa_vista_Factura">
-      <HintPath>..\..\COMPRAS\Proceso 2 Facturas\Frm_facturas\Capa_vista_Factura\bin\Debug\Capa_vista_Factura.dll</HintPath>
+      <HintPath>..\..\COMPRAS\Proceso 2 Compras\Frm_facturas\Capa_vista_Factura\bin\Debug\Capa_vista_Factura.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_LineaProd, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -66,6 +70,9 @@
     <Reference Include="Capa_Vista_OrdenProduccion">
       <HintPath>..\..\PRODUCCION\Orden_Produccion\Capa_Vista_OrdenProduccion\bin\Debug\Capa_Vista_OrdenProduccion.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_vista_orden_compra">
+      <HintPath>..\..\COMPRAS\Proceso 2 Orden Compra Marcos\MVC Orden Compra\Frm_Orden_Compra\Capa_vista_orden_compra\bin\Debug\Capa_vista_orden_compra.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Reporteador, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\componentes\reporteador\reporteador\Capa_Vista_Reporteador\bin\Debug\Capa_Vista_Reporteador.dll</HintPath>
@@ -82,7 +89,7 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Mantenimiento_cuentas_por_pagar">
-      <HintPath>..\..\COMPRAS\proseso 2 cuentaspagar Danilo\Mantenimiento_cuentasporpagar\Mantenimiento_cuentas_por_pagar\bin\Debug\Mantenimiento_cuentas_por_pagar.dll</HintPath>
+      <HintPath>..\..\COMPRAS\proseso 2 mantenimiento CXP Danilo\Mantenimiento_cuentas_por_pagar\Mantenimiento_cuentas_por_pagar\bin\Debug\Mantenimiento_cuentas_por_pagar.dll</HintPath>
     </Reference>
     <Reference Include="Mantenimiento_tipo_MOV_inv">
       <HintPath>..\..\INVENTARIO\Proceso 5 Mantenimiento Movimiento Intentario\Mantenimiento_tipo_MOV_inv\Mantenimiento_tipo_MOV_inv\bin\Debug\Mantenimiento_tipo_MOV_inv.dll</HintPath>
@@ -143,6 +150,60 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Devolucion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_marca.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_linea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_clientes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_bodega.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_cuentas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_inventario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_sucursal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_movOperacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-logistica.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-logistica1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logisticaLogin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loginlogistica.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logic.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transporte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logistica_MDI.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logistica_MDI1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logistica_MDI2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
