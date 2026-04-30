@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Modelo_OrdenProduccion">
+      <HintPath>..\Capa_Modelo_OrdenProduccion\bin\Debug\Capa_Modelo_OrdenProduccion.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

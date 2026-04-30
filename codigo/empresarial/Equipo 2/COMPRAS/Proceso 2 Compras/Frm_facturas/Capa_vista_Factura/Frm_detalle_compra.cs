@@ -16,12 +16,19 @@ namespace Capa_vista_Factura
         {
             InitializeComponent();
 
-            Txt_estado.ReadOnly = true;
 
             Cmb_tipo.Items.Add("");
             Cmb_tipo.Items.Add("Contado");
             Cmb_tipo.Items.Add("Credito");
             Cmb_tipo.SelectedIndex = 0;
+
+
+            Cmb_unidad.Items.Add("Lote");
+            Cmb_unidad.Items.Add("Pieza");
+            Cmb_unidad.Items.Add("Docena");
+            Cmb_unidad.Items.Add("Libra");
+            Cmb_unidad.Items.Add("Galón");
+            Cmb_unidad.SelectedIndex = 0;
         }
 
         private void Btn_Salir_Click(object sender, EventArgs e)
@@ -29,18 +36,10 @@ namespace Capa_vista_Factura
             this.Close();
         }
 
-        private void Cmb_tipo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Dtp_fechaCompra_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Btn_Agregar_Click(object sender, EventArgs e)
         {
+
+
             if (string.IsNullOrEmpty(Txt_producto.Text) || string.IsNullOrEmpty(Txt_Cantidad.Text))
             {
                 MessageBox.Show("Por favor, complete los campos necesarios.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -50,21 +49,25 @@ namespace Capa_vista_Factura
 
             string producto = Txt_producto.Text;
             string cantidad = Txt_Cantidad.Text;
+            string Unidad = Cmb_unidad.Text;
             string precio = Txt_PrecioUnitario.Text;
-            
 
 
 
-            Dgv_DetalleProductos.Rows.Add(producto, cantidad, precio);
+
+            Dgv_DetalleProductos.Rows.Add(producto, cantidad, Unidad, precio);
 
         }
 
         private void Btn_limpiar_Click(object sender, EventArgs e)
         {
 
+
+
             Txt_producto.Clear();
             Txt_Cantidad.Clear();
             Txt_PrecioUnitario.Clear();
+            //Cmb_unidad.
             Txt_producto.Focus();
         }
 
@@ -96,6 +99,9 @@ namespace Capa_vista_Factura
                 MessageBox.Show("Por favor, seleccione una fila completa haciendo clic en la parte izquierda.",
                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+
+
         }
     }
 }

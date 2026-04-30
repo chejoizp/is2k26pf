@@ -28,6 +28,8 @@ using Capa_Controlador_Seguridad;
 using Capa_vista_orden_compra;
 //using Capa_Vista_MOVINV;
 using System.Drawing.Imaging;
+using Capa_Vista_CXP;
+
 
 namespace Capa_Vista_Logista
 {
@@ -334,7 +336,7 @@ namespace Capa_Vista_Logista
 
         private void cuentasPorCobrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Cuentaporcobrar CXC = new Frm_Cuentaporcobrar();
+            Frm_CXC_NAV CXC = new Frm_CXC_NAV();
             CXC.MdiParent = this;
             CXC.Show();
         }
@@ -429,6 +431,36 @@ namespace Capa_Vista_Logista
             /*Frm_consulta_INV Consulta_inv = new Frm_consulta_INV();
             Consulta_inv.MdiParent = this;
             Consulta_inv.Show();*/
+        }
+
+        private void cuentasPorPagarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Frm_Compras_CXP cuentas_XP = new Frm_Compras_CXP();
+            cuentas_XP.MdiParent = this;
+            cuentas_XP.Show();
+        }
+
+        private void ordenDeCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Frm_ordencompra ordencompra = new Frm_ordencompra();
+            ordencompra.MdiParent = this;
+            ordencompra.Show();
+        }
+
+        private void unidadDeMedidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Mantenimiento_Unidad Unidad = new Frm_Mantenimiento_Unidad();
+            Unidad.MdiParent = this;
+            Unidad.Show();
+        }
+
+        private void devolucionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_inicio_devoluciones_d devolu = new Frm_inicio_devoluciones_d();
+            devolu.MdiParent = this;
+            devolu.Show();
+
         }
     }
 }

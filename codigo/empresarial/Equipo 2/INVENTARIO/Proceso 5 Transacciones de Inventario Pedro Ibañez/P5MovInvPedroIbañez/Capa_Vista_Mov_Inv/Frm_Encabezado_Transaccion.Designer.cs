@@ -51,6 +51,10 @@ namespace Capa_Vista_Mov_Inv
             this.label1 = new System.Windows.Forms.Label();
             this.btn_buscar = new System.Windows.Forms.Button();
             this.GB_Detalle = new System.Windows.Forms.GroupBox();
+            this.cbo_unidad_medida = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Cbo_IDBodega = new System.Windows.Forms.ComboBox();
+            this.Lbl_IDBodega = new System.Windows.Forms.Label();
             this.NUD_Cant_mov = new System.Windows.Forms.NumericUpDown();
             this.Lbl_Cantidad = new System.Windows.Forms.Label();
             this.Cbo_ID_Inventario = new System.Windows.Forms.ComboBox();
@@ -59,13 +63,17 @@ namespace Capa_Vista_Mov_Inv
             this.Btn_Remover_Detalle = new System.Windows.Forms.Button();
             this.Btn_Agregar_Detalle = new System.Windows.Forms.Button();
             this.DGV_DETALLE_MOVIMIENTO = new System.Windows.Forms.DataGridView();
-            this.Cbo_IDBodega = new System.Windows.Forms.ComboBox();
-            this.Lbl_IDBodega = new System.Windows.Forms.Label();
             this.Clm_ID_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Clm_Producto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_unidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnidadMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_Bodega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bodega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Clm_Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Btn_inicio = new System.Windows.Forms.Button();
+            this.Btn_anterior = new System.Windows.Forms.Button();
+            this.Btn_sig = new System.Windows.Forms.Button();
+            this.Btn_fin = new System.Windows.Forms.Button();
             this.GB_ENCABEZADO.SuspendLayout();
             this.panel1.SuspendLayout();
             this.GB_Detalle.SuspendLayout();
@@ -76,7 +84,7 @@ namespace Capa_Vista_Mov_Inv
             // BTN_LIMPIAR_ENCABEZADO
             // 
             this.BTN_LIMPIAR_ENCABEZADO.Image = ((System.Drawing.Image)(resources.GetObject("BTN_LIMPIAR_ENCABEZADO.Image")));
-            this.BTN_LIMPIAR_ENCABEZADO.Location = new System.Drawing.Point(613, 107);
+            this.BTN_LIMPIAR_ENCABEZADO.Location = new System.Drawing.Point(571, 99);
             this.BTN_LIMPIAR_ENCABEZADO.Name = "BTN_LIMPIAR_ENCABEZADO";
             this.BTN_LIMPIAR_ENCABEZADO.Size = new System.Drawing.Size(86, 80);
             this.BTN_LIMPIAR_ENCABEZADO.TabIndex = 29;
@@ -87,9 +95,9 @@ namespace Capa_Vista_Mov_Inv
             // 
             // Btn_Salir
             // 
-            this.Btn_Salir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Btn_Salir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Btn_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Salir.Image")));
-            this.Btn_Salir.Location = new System.Drawing.Point(886, 107);
+            this.Btn_Salir.Location = new System.Drawing.Point(1105, 99);
             this.Btn_Salir.Name = "Btn_Salir";
             this.Btn_Salir.Size = new System.Drawing.Size(86, 80);
             this.Btn_Salir.TabIndex = 28;
@@ -101,7 +109,7 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Modificar
             // 
             this.Btn_Modificar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Modificar.Image")));
-            this.Btn_Modificar.Location = new System.Drawing.Point(429, 107);
+            this.Btn_Modificar.Location = new System.Drawing.Point(295, 99);
             this.Btn_Modificar.Name = "Btn_Modificar";
             this.Btn_Modificar.Size = new System.Drawing.Size(86, 80);
             this.Btn_Modificar.TabIndex = 25;
@@ -112,7 +120,7 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Reporte
             // 
             this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
-            this.Btn_Reporte.Location = new System.Drawing.Point(702, 107);
+            this.Btn_Reporte.Location = new System.Drawing.Point(479, 99);
             this.Btn_Reporte.Name = "Btn_Reporte";
             this.Btn_Reporte.Size = new System.Drawing.Size(86, 80);
             this.Btn_Reporte.TabIndex = 24;
@@ -123,7 +131,7 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Ayuda
             // 
             this.Btn_Ayuda.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Ayuda.Image")));
-            this.Btn_Ayuda.Location = new System.Drawing.Point(794, 107);
+            this.Btn_Ayuda.Location = new System.Drawing.Point(1013, 99);
             this.Btn_Ayuda.Name = "Btn_Ayuda";
             this.Btn_Ayuda.Size = new System.Drawing.Size(86, 80);
             this.Btn_Ayuda.TabIndex = 23;
@@ -134,7 +142,7 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Cancelar
             // 
             this.Btn_Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Cancelar.Image")));
-            this.Btn_Cancelar.Location = new System.Drawing.Point(337, 107);
+            this.Btn_Cancelar.Location = new System.Drawing.Point(203, 99);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
             this.Btn_Cancelar.Size = new System.Drawing.Size(86, 80);
             this.Btn_Cancelar.TabIndex = 22;
@@ -145,11 +153,11 @@ namespace Capa_Vista_Mov_Inv
             // 
             // btn_Guardar
             // 
-            this.btn_Guardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btn_Guardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_Guardar.Image")));
-            this.btn_Guardar.Location = new System.Drawing.Point(199, 107);
+            this.btn_Guardar.Location = new System.Drawing.Point(104, 99);
             this.btn_Guardar.Name = "btn_Guardar";
-            this.btn_Guardar.Size = new System.Drawing.Size(132, 80);
+            this.btn_Guardar.Size = new System.Drawing.Size(93, 80);
             this.btn_Guardar.TabIndex = 21;
             this.btn_Guardar.Text = "GUARDAR";
             this.btn_Guardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -159,9 +167,9 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Agregar_Movimiento
             // 
             this.Btn_Agregar_Movimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Agregar_Movimiento.Image")));
-            this.Btn_Agregar_Movimiento.Location = new System.Drawing.Point(12, 93);
+            this.Btn_Agregar_Movimiento.Location = new System.Drawing.Point(8, 98);
             this.Btn_Agregar_Movimiento.Name = "Btn_Agregar_Movimiento";
-            this.Btn_Agregar_Movimiento.Size = new System.Drawing.Size(132, 80);
+            this.Btn_Agregar_Movimiento.Size = new System.Drawing.Size(90, 80);
             this.Btn_Agregar_Movimiento.TabIndex = 20;
             this.Btn_Agregar_Movimiento.Text = "ADD Movimiento";
             this.Btn_Agregar_Movimiento.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -179,7 +187,7 @@ namespace Capa_Vista_Mov_Inv
             this.GB_ENCABEZADO.Controls.Add(this.Lbl_ID_TipoMovimiento);
             this.GB_ENCABEZADO.Controls.Add(this.Lbl_IDMovInv);
             this.GB_ENCABEZADO.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GB_ENCABEZADO.Location = new System.Drawing.Point(30, 193);
+            this.GB_ENCABEZADO.Location = new System.Drawing.Point(278, 203);
             this.GB_ENCABEZADO.Name = "GB_ENCABEZADO";
             this.GB_ENCABEZADO.Size = new System.Drawing.Size(693, 234);
             this.GB_ENCABEZADO.TabIndex = 19;
@@ -191,7 +199,7 @@ namespace Capa_Vista_Mov_Inv
             this.txt_descripcion.Location = new System.Drawing.Point(24, 152);
             this.txt_descripcion.MinimumSize = new System.Drawing.Size(4, 80);
             this.txt_descripcion.Name = "txt_descripcion";
-            this.txt_descripcion.Size = new System.Drawing.Size(645, 80);
+            this.txt_descripcion.Size = new System.Drawing.Size(645, 26);
             this.txt_descripcion.TabIndex = 9;
             // 
             // Cbo_Id_Movimiento
@@ -264,7 +272,7 @@ namespace Capa_Vista_Mov_Inv
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(3, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1010, 80);
+            this.panel1.Size = new System.Drawing.Size(1287, 80);
             this.panel1.TabIndex = 30;
             // 
             // label1
@@ -280,7 +288,7 @@ namespace Capa_Vista_Mov_Inv
             // btn_buscar
             // 
             this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
-            this.btn_buscar.Location = new System.Drawing.Point(521, 107);
+            this.btn_buscar.Location = new System.Drawing.Point(387, 99);
             this.btn_buscar.Name = "btn_buscar";
             this.btn_buscar.Size = new System.Drawing.Size(86, 80);
             this.btn_buscar.TabIndex = 31;
@@ -291,6 +299,8 @@ namespace Capa_Vista_Mov_Inv
             // 
             // GB_Detalle
             // 
+            this.GB_Detalle.Controls.Add(this.cbo_unidad_medida);
+            this.GB_Detalle.Controls.Add(this.label2);
             this.GB_Detalle.Controls.Add(this.Cbo_IDBodega);
             this.GB_Detalle.Controls.Add(this.Lbl_IDBodega);
             this.GB_Detalle.Controls.Add(this.NUD_Cant_mov);
@@ -302,12 +312,48 @@ namespace Capa_Vista_Mov_Inv
             this.GB_Detalle.Controls.Add(this.Btn_Agregar_Detalle);
             this.GB_Detalle.Controls.Add(this.DGV_DETALLE_MOVIMIENTO);
             this.GB_Detalle.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GB_Detalle.Location = new System.Drawing.Point(30, 443);
+            this.GB_Detalle.Location = new System.Drawing.Point(161, 443);
             this.GB_Detalle.Name = "GB_Detalle";
-            this.GB_Detalle.Size = new System.Drawing.Size(958, 344);
+            this.GB_Detalle.Size = new System.Drawing.Size(999, 470);
             this.GB_Detalle.TabIndex = 32;
             this.GB_Detalle.TabStop = false;
             this.GB_Detalle.Text = "DETALLE";
+            // 
+            // cbo_unidad_medida
+            // 
+            this.cbo_unidad_medida.FormattingEnabled = true;
+            this.cbo_unidad_medida.Location = new System.Drawing.Point(114, 77);
+            this.cbo_unidad_medida.Name = "cbo_unidad_medida";
+            this.cbo_unidad_medida.Size = new System.Drawing.Size(150, 27);
+            this.cbo_unidad_medida.TabIndex = 21;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(11, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(97, 16);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Unidad Medida";
+            // 
+            // Cbo_IDBodega
+            // 
+            this.Cbo_IDBodega.FormattingEnabled = true;
+            this.Cbo_IDBodega.Location = new System.Drawing.Point(372, 28);
+            this.Cbo_IDBodega.Name = "Cbo_IDBodega";
+            this.Cbo_IDBodega.Size = new System.Drawing.Size(162, 27);
+            this.Cbo_IDBodega.TabIndex = 19;
+            // 
+            // Lbl_IDBodega
+            // 
+            this.Lbl_IDBodega.AutoSize = true;
+            this.Lbl_IDBodega.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_IDBodega.Location = new System.Drawing.Point(303, 35);
+            this.Lbl_IDBodega.Name = "Lbl_IDBodega";
+            this.Lbl_IDBodega.Size = new System.Drawing.Size(73, 16);
+            this.Lbl_IDBodega.TabIndex = 18;
+            this.Lbl_IDBodega.Text = "ID Bodega:";
             // 
             // NUD_Cant_mov
             // 
@@ -362,7 +408,7 @@ namespace Capa_Vista_Mov_Inv
             // BTN_LIMPIAR_DETALE
             // 
             this.BTN_LIMPIAR_DETALE.Image = ((System.Drawing.Image)(resources.GetObject("BTN_LIMPIAR_DETALE.Image")));
-            this.BTN_LIMPIAR_DETALE.Location = new System.Drawing.Point(826, 213);
+            this.BTN_LIMPIAR_DETALE.Location = new System.Drawing.Point(870, 207);
             this.BTN_LIMPIAR_DETALE.Name = "BTN_LIMPIAR_DETALE";
             this.BTN_LIMPIAR_DETALE.Size = new System.Drawing.Size(113, 80);
             this.BTN_LIMPIAR_DETALE.TabIndex = 12;
@@ -374,7 +420,7 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Remover_Detalle
             // 
             this.Btn_Remover_Detalle.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Remover_Detalle.Image")));
-            this.Btn_Remover_Detalle.Location = new System.Drawing.Point(826, 127);
+            this.Btn_Remover_Detalle.Location = new System.Drawing.Point(870, 121);
             this.Btn_Remover_Detalle.Name = "Btn_Remover_Detalle";
             this.Btn_Remover_Detalle.Size = new System.Drawing.Size(113, 80);
             this.Btn_Remover_Detalle.TabIndex = 11;
@@ -386,7 +432,7 @@ namespace Capa_Vista_Mov_Inv
             // Btn_Agregar_Detalle
             // 
             this.Btn_Agregar_Detalle.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Agregar_Detalle.Image")));
-            this.Btn_Agregar_Detalle.Location = new System.Drawing.Point(826, 41);
+            this.Btn_Agregar_Detalle.Location = new System.Drawing.Point(870, 35);
             this.Btn_Agregar_Detalle.Name = "Btn_Agregar_Detalle";
             this.Btn_Agregar_Detalle.Size = new System.Drawing.Size(113, 80);
             this.Btn_Agregar_Detalle.TabIndex = 9;
@@ -401,33 +447,17 @@ namespace Capa_Vista_Mov_Inv
             this.DGV_DETALLE_MOVIMIENTO.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Clm_ID_Producto,
             this.Clm_Producto,
+            this.ID_unidad,
+            this.UnidadMedida,
             this.ID_Bodega,
             this.Bodega,
             this.Clm_Cantidad});
-            this.DGV_DETALLE_MOVIMIENTO.Location = new System.Drawing.Point(14, 78);
+            this.DGV_DETALLE_MOVIMIENTO.Location = new System.Drawing.Point(14, 121);
             this.DGV_DETALLE_MOVIMIENTO.Name = "DGV_DETALLE_MOVIMIENTO";
             this.DGV_DETALLE_MOVIMIENTO.RowHeadersWidth = 51;
             this.DGV_DETALLE_MOVIMIENTO.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_DETALLE_MOVIMIENTO.Size = new System.Drawing.Size(789, 254);
+            this.DGV_DETALLE_MOVIMIENTO.Size = new System.Drawing.Size(836, 339);
             this.DGV_DETALLE_MOVIMIENTO.TabIndex = 10;
-            // 
-            // Cbo_IDBodega
-            // 
-            this.Cbo_IDBodega.FormattingEnabled = true;
-            this.Cbo_IDBodega.Location = new System.Drawing.Point(372, 28);
-            this.Cbo_IDBodega.Name = "Cbo_IDBodega";
-            this.Cbo_IDBodega.Size = new System.Drawing.Size(162, 27);
-            this.Cbo_IDBodega.TabIndex = 19;
-            // 
-            // Lbl_IDBodega
-            // 
-            this.Lbl_IDBodega.AutoSize = true;
-            this.Lbl_IDBodega.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_IDBodega.Location = new System.Drawing.Point(303, 35);
-            this.Lbl_IDBodega.Name = "Lbl_IDBodega";
-            this.Lbl_IDBodega.Size = new System.Drawing.Size(73, 16);
-            this.Lbl_IDBodega.TabIndex = 18;
-            this.Lbl_IDBodega.Text = "ID Bodega:";
             // 
             // Clm_ID_Producto
             // 
@@ -442,6 +472,16 @@ namespace Capa_Vista_Mov_Inv
             this.Clm_Producto.MinimumWidth = 6;
             this.Clm_Producto.Name = "Clm_Producto";
             this.Clm_Producto.Width = 125;
+            // 
+            // ID_unidad
+            // 
+            this.ID_unidad.HeaderText = "ID Unidad";
+            this.ID_unidad.Name = "ID_unidad";
+            // 
+            // UnidadMedida
+            // 
+            this.UnidadMedida.HeaderText = "Medida_Unidad";
+            this.UnidadMedida.Name = "UnidadMedida";
             // 
             // ID_Bodega
             // 
@@ -460,11 +500,63 @@ namespace Capa_Vista_Mov_Inv
             this.Clm_Cantidad.Name = "Clm_Cantidad";
             this.Clm_Cantidad.Width = 125;
             // 
+            // Btn_inicio
+            // 
+            this.Btn_inicio.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_inicio.Image = ((System.Drawing.Image)(resources.GetObject("Btn_inicio.Image")));
+            this.Btn_inicio.Location = new System.Drawing.Point(663, 98);
+            this.Btn_inicio.Name = "Btn_inicio";
+            this.Btn_inicio.Size = new System.Drawing.Size(83, 81);
+            this.Btn_inicio.TabIndex = 9;
+            this.Btn_inicio.Text = "Inicio";
+            this.Btn_inicio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_inicio.UseVisualStyleBackColor = true;
+            // 
+            // Btn_anterior
+            // 
+            this.Btn_anterior.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_anterior.Image = ((System.Drawing.Image)(resources.GetObject("Btn_anterior.Image")));
+            this.Btn_anterior.Location = new System.Drawing.Point(752, 98);
+            this.Btn_anterior.Name = "Btn_anterior";
+            this.Btn_anterior.Size = new System.Drawing.Size(81, 81);
+            this.Btn_anterior.TabIndex = 33;
+            this.Btn_anterior.Text = "Anterior";
+            this.Btn_anterior.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_anterior.UseVisualStyleBackColor = true;
+            // 
+            // Btn_sig
+            // 
+            this.Btn_sig.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_sig.Image = ((System.Drawing.Image)(resources.GetObject("Btn_sig.Image")));
+            this.Btn_sig.Location = new System.Drawing.Point(839, 100);
+            this.Btn_sig.Name = "Btn_sig";
+            this.Btn_sig.Size = new System.Drawing.Size(81, 79);
+            this.Btn_sig.TabIndex = 34;
+            this.Btn_sig.Text = "Siguiente";
+            this.Btn_sig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_sig.UseVisualStyleBackColor = true;
+            // 
+            // Btn_fin
+            // 
+            this.Btn_fin.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_fin.Image = ((System.Drawing.Image)(resources.GetObject("Btn_fin.Image")));
+            this.Btn_fin.Location = new System.Drawing.Point(926, 100);
+            this.Btn_fin.Name = "Btn_fin";
+            this.Btn_fin.Size = new System.Drawing.Size(81, 79);
+            this.Btn_fin.TabIndex = 35;
+            this.Btn_fin.Text = "Fin";
+            this.Btn_fin.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_fin.UseVisualStyleBackColor = true;
+            // 
             // Frm_Encabezado_Transaccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 814);
+            this.ClientSize = new System.Drawing.Size(1225, 925);
+            this.Controls.Add(this.Btn_fin);
+            this.Controls.Add(this.Btn_sig);
+            this.Controls.Add(this.Btn_anterior);
+            this.Controls.Add(this.Btn_inicio);
             this.Controls.Add(this.GB_Detalle);
             this.Controls.Add(this.btn_buscar);
             this.Controls.Add(this.panel1);
@@ -477,6 +569,7 @@ namespace Capa_Vista_Mov_Inv
             this.Controls.Add(this.btn_Guardar);
             this.Controls.Add(this.Btn_Agregar_Movimiento);
             this.Controls.Add(this.GB_ENCABEZADO);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Frm_Encabezado_Transaccion";
             this.Text = "Movimiento de Inventario";
             this.GB_ENCABEZADO.ResumeLayout(false);
@@ -524,10 +617,18 @@ namespace Capa_Vista_Mov_Inv
         public System.Windows.Forms.DataGridView DGV_DETALLE_MOVIMIENTO;
         private System.Windows.Forms.ComboBox Cbo_IDBodega;
         private System.Windows.Forms.Label Lbl_IDBodega;
+        private System.Windows.Forms.ComboBox cbo_unidad_medida;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clm_ID_Producto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clm_Producto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_unidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadMedida;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Bodega;
         private System.Windows.Forms.DataGridViewTextBoxColumn Bodega;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clm_Cantidad;
+        private System.Windows.Forms.Button Btn_inicio;
+        private System.Windows.Forms.Button Btn_anterior;
+        private System.Windows.Forms.Button Btn_sig;
+        private System.Windows.Forms.Button Btn_fin;
     }
 }

@@ -30,7 +30,6 @@ namespace Capa_Vista_Ventas
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ventas_Generales));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.Btn_buscar_Ventas = new System.Windows.Forms.Button();
@@ -38,16 +37,13 @@ namespace Capa_Vista_Ventas
             this.Btn_Reporte_Ventas = new System.Windows.Forms.Button();
             this.Btn_Ayuda = new System.Windows.Forms.Button();
             this.Btn_Agregar_Ventas = new System.Windows.Forms.Button();
-            this.Dgv_Ventas = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dgv_Ventas_Generales = new System.Windows.Forms.DataGridView();
+            this.Btn_inicio = new System.Windows.Forms.Button();
+            this.Btn_anterior = new System.Windows.Forms.Button();
+            this.Btn_sig = new System.Windows.Forms.Button();
+            this.Btn_fin = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ventas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ventas_Generales)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -73,148 +69,144 @@ namespace Capa_Vista_Ventas
             // 
             // Btn_buscar_Ventas
             // 
-            this.Btn_buscar_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_buscar_Ventas.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_buscar_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_buscar_Ventas.Image")));
-            this.Btn_buscar_Ventas.Location = new System.Drawing.Point(407, 107);
+            this.Btn_buscar_Ventas.Location = new System.Drawing.Point(201, 107);
             this.Btn_buscar_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_buscar_Ventas.Name = "Btn_buscar_Ventas";
-            this.Btn_buscar_Ventas.Size = new System.Drawing.Size(121, 84);
+            this.Btn_buscar_Ventas.Size = new System.Drawing.Size(99, 107);
             this.Btn_buscar_Ventas.TabIndex = 52;
-            this.Btn_buscar_Ventas.Text = "BUSCAR";
+            this.Btn_buscar_Ventas.Text = "Buscar";
             this.Btn_buscar_Ventas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_buscar_Ventas.UseVisualStyleBackColor = true;
             // 
             // Btn_Salir
             // 
-            this.Btn_Salir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.Btn_Salir.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Salir.BackColor = System.Drawing.Color.White;
+            this.Btn_Salir.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Salir.Image")));
-            this.Btn_Salir.Location = new System.Drawing.Point(808, 107);
+            this.Btn_Salir.Location = new System.Drawing.Point(941, 108);
             this.Btn_Salir.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Salir.Name = "Btn_Salir";
-            this.Btn_Salir.Size = new System.Drawing.Size(121, 84);
+            this.Btn_Salir.Size = new System.Drawing.Size(99, 107);
             this.Btn_Salir.TabIndex = 51;
-            this.Btn_Salir.Text = "SALIR";
+            this.Btn_Salir.Text = "Salir";
             this.Btn_Salir.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Salir.UseVisualStyleBackColor = false;
             // 
             // Btn_Reporte_Ventas
             // 
-            this.Btn_Reporte_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Reporte_Ventas.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Reporte_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte_Ventas.Image")));
-            this.Btn_Reporte_Ventas.Location = new System.Drawing.Point(550, 107);
+            this.Btn_Reporte_Ventas.Location = new System.Drawing.Point(308, 107);
             this.Btn_Reporte_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Reporte_Ventas.Name = "Btn_Reporte_Ventas";
-            this.Btn_Reporte_Ventas.Size = new System.Drawing.Size(121, 84);
+            this.Btn_Reporte_Ventas.Size = new System.Drawing.Size(99, 107);
             this.Btn_Reporte_Ventas.TabIndex = 49;
-            this.Btn_Reporte_Ventas.Text = "REPORTE";
+            this.Btn_Reporte_Ventas.Text = "Imprimir";
             this.Btn_Reporte_Ventas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Reporte_Ventas.UseVisualStyleBackColor = true;
             // 
             // Btn_Ayuda
             // 
-            this.Btn_Ayuda.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Ayuda.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Ayuda.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Ayuda.Image")));
-            this.Btn_Ayuda.Location = new System.Drawing.Point(679, 107);
+            this.Btn_Ayuda.Location = new System.Drawing.Point(834, 108);
             this.Btn_Ayuda.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Ayuda.Name = "Btn_Ayuda";
-            this.Btn_Ayuda.Size = new System.Drawing.Size(121, 84);
+            this.Btn_Ayuda.Size = new System.Drawing.Size(99, 107);
             this.Btn_Ayuda.TabIndex = 48;
-            this.Btn_Ayuda.Text = "AYUDA";
+            this.Btn_Ayuda.Text = "Ayuda";
             this.Btn_Ayuda.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Ayuda.UseVisualStyleBackColor = true;
             // 
             // Btn_Agregar_Ventas
             // 
-            this.Btn_Agregar_Ventas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Agregar_Ventas.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Agregar_Ventas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Agregar_Ventas.Image")));
-            this.Btn_Agregar_Ventas.Location = new System.Drawing.Point(266, 107);
+            this.Btn_Agregar_Ventas.Location = new System.Drawing.Point(94, 107);
             this.Btn_Agregar_Ventas.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_Agregar_Ventas.Name = "Btn_Agregar_Ventas";
-            this.Btn_Agregar_Ventas.Size = new System.Drawing.Size(121, 84);
+            this.Btn_Agregar_Ventas.Size = new System.Drawing.Size(99, 107);
             this.Btn_Agregar_Ventas.TabIndex = 46;
-            this.Btn_Agregar_Ventas.Text = "INGRESAR";
+            this.Btn_Agregar_Ventas.Text = "Ingresar";
             this.Btn_Agregar_Ventas.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Agregar_Ventas.UseVisualStyleBackColor = true;
             this.Btn_Agregar_Ventas.Click += new System.EventHandler(this.Btn_Agregar_Ventas_Click);
             // 
-            // Dgv_Ventas
+            // Dgv_Ventas_Generales
             // 
-            this.Dgv_Ventas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Ventas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7});
-            this.Dgv_Ventas.Location = new System.Drawing.Point(70, 241);
-            this.Dgv_Ventas.Margin = new System.Windows.Forms.Padding(4);
-            this.Dgv_Ventas.Name = "Dgv_Ventas";
-            this.Dgv_Ventas.RowHeadersWidth = 51;
-            this.Dgv_Ventas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_Ventas.Size = new System.Drawing.Size(1067, 254);
-            this.Dgv_Ventas.TabIndex = 167;
+            this.Dgv_Ventas_Generales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Ventas_Generales.Location = new System.Drawing.Point(38, 241);
+            this.Dgv_Ventas_Generales.Margin = new System.Windows.Forms.Padding(4);
+            this.Dgv_Ventas_Generales.Name = "Dgv_Ventas_Generales";
+            this.Dgv_Ventas_Generales.RowHeadersWidth = 51;
+            this.Dgv_Ventas_Generales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Dgv_Ventas_Generales.Size = new System.Drawing.Size(1067, 254);
+            this.Dgv_Ventas_Generales.TabIndex = 167;
             // 
-            // dataGridViewTextBoxColumn1
+            // Btn_inicio
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 125;
+            this.Btn_inicio.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_inicio.Image = ((System.Drawing.Image)(resources.GetObject("Btn_inicio.Image")));
+            this.Btn_inicio.Location = new System.Drawing.Point(414, 108);
+            this.Btn_inicio.Margin = new System.Windows.Forms.Padding(4);
+            this.Btn_inicio.Name = "Btn_inicio";
+            this.Btn_inicio.Size = new System.Drawing.Size(99, 106);
+            this.Btn_inicio.TabIndex = 168;
+            this.Btn_inicio.Text = "Inicio";
+            this.Btn_inicio.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_inicio.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewTextBoxColumn2
+            // Btn_anterior
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Id Inventario";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 125;
+            this.Btn_anterior.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_anterior.Image = ((System.Drawing.Image)(resources.GetObject("Btn_anterior.Image")));
+            this.Btn_anterior.Location = new System.Drawing.Point(521, 107);
+            this.Btn_anterior.Margin = new System.Windows.Forms.Padding(4);
+            this.Btn_anterior.Name = "Btn_anterior";
+            this.Btn_anterior.Size = new System.Drawing.Size(95, 107);
+            this.Btn_anterior.TabIndex = 169;
+            this.Btn_anterior.Text = "Anterior";
+            this.Btn_anterior.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_anterior.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewTextBoxColumn3
+            // Btn_sig
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Producto";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 125;
+            this.Btn_sig.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_sig.Image = ((System.Drawing.Image)(resources.GetObject("Btn_sig.Image")));
+            this.Btn_sig.Location = new System.Drawing.Point(624, 108);
+            this.Btn_sig.Margin = new System.Windows.Forms.Padding(4);
+            this.Btn_sig.Name = "Btn_sig";
+            this.Btn_sig.Size = new System.Drawing.Size(95, 106);
+            this.Btn_sig.TabIndex = 170;
+            this.Btn_sig.Text = "Siguiente";
+            this.Btn_sig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_sig.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewTextBoxColumn4
+            // Btn_fin
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Precio Unitario";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.HeaderText = "Precio Subtotal";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.HeaderText = "Costo Subtotal";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 125;
+            this.Btn_fin.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_fin.Image = ((System.Drawing.Image)(resources.GetObject("Btn_fin.Image")));
+            this.Btn_fin.Location = new System.Drawing.Point(727, 107);
+            this.Btn_fin.Margin = new System.Windows.Forms.Padding(4);
+            this.Btn_fin.Name = "Btn_fin";
+            this.Btn_fin.Size = new System.Drawing.Size(95, 107);
+            this.Btn_fin.TabIndex = 171;
+            this.Btn_fin.Text = "Fin";
+            this.Btn_fin.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_fin.UseVisualStyleBackColor = true;
             // 
             // Frm_Ventas_Generales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1217, 585);
-            this.Controls.Add(this.Dgv_Ventas);
+            this.ClientSize = new System.Drawing.Size(1144, 585);
+            this.Controls.Add(this.Btn_inicio);
+            this.Controls.Add(this.Btn_anterior);
+            this.Controls.Add(this.Btn_sig);
+            this.Controls.Add(this.Btn_fin);
+            this.Controls.Add(this.Dgv_Ventas_Generales);
             this.Controls.Add(this.Btn_buscar_Ventas);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Reporte_Ventas);
@@ -224,9 +216,10 @@ namespace Capa_Vista_Ventas
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Frm_Ventas_Generales";
             this.Text = "Ventas Generales";
+            this.Load += new System.EventHandler(this.Frm_Ventas_Generales_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ventas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ventas_Generales)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -240,13 +233,10 @@ namespace Capa_Vista_Ventas
         private System.Windows.Forms.Button Btn_Reporte_Ventas;
         private System.Windows.Forms.Button Btn_Ayuda;
         private System.Windows.Forms.Button Btn_Agregar_Ventas;
-        private System.Windows.Forms.DataGridView Dgv_Ventas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridView Dgv_Ventas_Generales;
+        private System.Windows.Forms.Button Btn_inicio;
+        private System.Windows.Forms.Button Btn_anterior;
+        private System.Windows.Forms.Button Btn_sig;
+        private System.Windows.Forms.Button Btn_fin;
     }
 }

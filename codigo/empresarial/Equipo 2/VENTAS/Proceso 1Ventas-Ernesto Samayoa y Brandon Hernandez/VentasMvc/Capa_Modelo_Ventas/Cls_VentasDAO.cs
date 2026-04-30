@@ -1,0 +1,379 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Odbc;
+using System.Data;
+
+namespace Capa_Modelo_Ventas
+{
+    public class Cls_VentasDAO
+    {
+        private Cls_ConexionBD conexion = new Cls_ConexionBD();
+
+        private static readonly string SQL_CLIENTES = @"
+        SELECT 
+        Pk_Id_Cliente,
+        CONCAT(Pk_Id_Cliente, ' - ', Cmp_Nombre, ' ', Cmp_Apellido) AS NombreCompleto
+        FROM tbl_clientes";
+
+        private static readonly string SQL_SUCURSALES = @"
+        SELECT 
+         Pk_Id_Sucursal,
+         CONCAT(Pk_Id_Sucursal, ' - ', Cmp_Direccion) AS NombreSucursal
+         FROM tbl_sucursales";
+
+        private static readonly string SQL_INVENTARIO = @"
+        SELECT
+        i.pk_inventario_id,
+        i.nombre_prod,
+        i.descripcion,
+        i.precio_unitario,
+        e.stock,
+        e.fk_bodega_id,
+        CONCAT(i.pk_inventario_id, ' - ', i.nombre_prod, ' (Stock: ', e.stock, ')') AS Producto
+        FROM tbl_inventario i
+        INNER JOIN tbl_existencias e ON i.pk_inventario_id = e.fk_inventario_id
+        WHERE i.estado_producto = 'ACTIVO' AND e.stock > 0";
+
+        private static readonly string SQL_BODEGAS = @"
+        SELECT 
+        Pk_Id_Bodega,
+        CONCAT(Pk_Id_Bodega, ' - ', Cmp_Nombre_Bodega) AS NombreBodega
+        FROM tbl_bodega
+        WHERE Cmp_Estado_Bodega = 'Activo'";
+
+
+
+        //NUEVO DE COMBOBOX DE ESTADO
+        private static readonly string SQL_ESTADOVENTA=
+        "SHOW COLUMNS FROM tbl_ventas LIKE 'Cmp_Estado_Venta'";
+
+        //Nuevo agregado para Tipo operacion
+        private static readonly string SQL_TIPO_OPERACION =
+        "SHOW COLUMNS FROM tbl_ventas LIKE 'Cmp_Tipo_Operacion'";
+
+
+        //ID AUTOINCREMENTABLE
+        private static readonly string SQL_SIGUIENTE_ID = @"
+        SELECT IFNULL(MAX(Pk_Id_Ventas), 0) + 1 AS SiguienteID FROM tbl_ventas";
+
+        //PARA GRID
+        private static readonly string SQL_INVENTARIO_GRID = @"
+        SELECT 
+        i.pk_inventario_id,
+        i.nombre_prod,
+        i.descripcion,
+        i.precio_unitario
+        FROM tbl_inventario i
+        WHERE i.estado_producto = 'ACTIVO'";
+
+
+        private static readonly string SQL_INSERT_VENTA = @"
+        INSERT INTO tbl_ventas (Cmp_Fecha_Venta, Fk_Id_Cliente, Fk_Id_Sucursal, Cmp_Estado_Venta, Cmp_Tipo_Operacion, Cmp_Saldo_Total)
+        VALUES (?, ?, ?, ?, ?, ?)";
+
+        private static readonly string SQL_INSERT_DETALLE = @"
+        INSERT INTO tbl_detalle_ventas (Fk_Id_Ventas, Fk_Id_Inventario, Cmp_Cantidad_Producto, Cmp_Precio_Subtotal, Cmp_Costo_Subtotal)
+        VALUES (?, ?, ?, ?, ?)";
+
+        private static readonly string SQL_INSERT_CUENTA_COBRAR = @"
+    INSERT INTO tbl_cuentas_por_cobrar (Fk_Id_Venta, FK_Id_Cliente, Cmp_Fecha_De_Deuda, Cmp_Fecha_Vencimiento, Cmp_Monto_Total, Cmp_Estado)
+    VALUES (?, ?, ?, ?, ?, ?)";
+        //VALIDAR LA ASIGNACION DEL VENDEDOR A CLIENTE
+        private static readonly string SQL_VALIDAR_CLIENTE_VENDEDOR = @"
+        SELECT 
+        v.Pk_Id_Vendedor,
+        CONCAT(v.Cmp_Nombre, ' ', v.Cmp_Apellido) AS Vendedor
+        FROM tbl_asignacion_clientes a
+        INNER JOIN tbl_vendedor v ON a.Fk_Id_Vendedor = v.Pk_Id_Vendedor
+        WHERE a.Fk_Id_Cliente = ?";
+
+        //Primer Formulario Ventas Generales
+        //GRID PARA VENTAS GENERALES
+        private static readonly string SQL_VENTAS_LISTADO = @"
+        SELECT 
+        v.Pk_Id_Ventas AS IdVenta,
+        v.Cmp_Fecha_Venta AS Fecha,
+        CONCAT(c.Cmp_Nombre, ' ', c.Cmp_Apellido) AS Cliente,
+        c.Cmp_Tipo AS TipoCliente,
+        v.Cmp_Tipo_Operacion AS TipoOperacion,
+        v.Cmp_Saldo_Total AS Total
+        FROM tbl_ventas v
+        INNER JOIN tbl_clientes c ON v.Fk_Id_Cliente = c.Pk_Id_Cliente
+        ORDER BY v.Pk_Id_Ventas ASC";
+
+
+
+
+        public DataTable ObtenerClientes()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcDataAdapter da = new OdbcDataAdapter(SQL_CLIENTES, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    conexion.desconexion(conn);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable ObtenerSucursales()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcDataAdapter da = new OdbcDataAdapter(SQL_SUCURSALES, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    conexion.desconexion(conn);
+                    return dt;
+                }
+            }
+        }
+        public DataTable ObtenerInventario()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcDataAdapter da = new OdbcDataAdapter(SQL_INVENTARIO, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    conexion.desconexion(conn);
+                    return dt;
+                }
+            }
+        }
+        public DataTable ObtenerBodegas()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcDataAdapter da = new OdbcDataAdapter(SQL_BODEGAS, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    conexion.desconexion(conn);
+                    return dt;
+                }
+            }
+        }
+
+        public DataTable ObtenerInventarioGrid()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcDataAdapter da = new OdbcDataAdapter(SQL_INVENTARIO_GRID, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    conexion.desconexion(conn);
+                    return dt;
+                }
+            }
+        }
+
+        //Nuevo agregado para Estado venta
+        public DataTable ObtenerEstadoVenta()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcCommand cmd = new OdbcCommand(SQL_ESTADOVENTA, conn))
+                {
+                    using (OdbcDataReader reader = cmd.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("EstadoVenta");
+
+                        if (reader.Read())
+                        {
+                            string enumValues = reader["Type"].ToString();
+                            // enum('Activo','Inactivo')
+
+                            enumValues = enumValues.Replace("enum(", "").Replace(")", "").Replace("'", "");
+
+                            string[] valores = enumValues.Split(',');
+
+                            foreach (string val in valores)
+                            {
+                                dt.Rows.Add(val);
+                            }
+                        }
+
+                        conexion.desconexion(conn);
+                        return dt;
+                    }
+                }
+            }
+        }
+
+        //Nuevo agregado para tipo operacion
+        public DataTable ObtenerTipoOperacion()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcCommand cmd = new OdbcCommand(SQL_TIPO_OPERACION, conn))
+                {
+                    using (OdbcDataReader reader = cmd.ExecuteReader())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("TipoOperacion");
+
+                        if (reader.Read())
+                        {
+                            string enumValues = reader["Type"].ToString();
+                            // enum('Venta','Cotizacion','Pedido')
+
+                            enumValues = enumValues
+                                .Replace("enum(", "")
+                                .Replace(")", "")
+                                .Replace("'", "");
+
+                            string[] valores = enumValues.Split(',');
+
+                            foreach (string val in valores)
+                            {
+                                dt.Rows.Add(val);
+                            }
+                        }
+
+                        conexion.desconexion(conn);
+                        return dt;
+                    }
+                }
+            }
+        }
+
+
+        public int ObtenerSiguienteIdVenta()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcCommand cmd = new OdbcCommand(SQL_SIGUIENTE_ID, conn))
+                {
+                    int id = Convert.ToInt32(cmd.ExecuteScalar());
+                    conexion.desconexion(conn);
+                    return id;
+                }
+            }
+        }
+
+        // OBTENER EL VENDEDOR-CLIENTE
+        public DataTable ObtenerVendedorDeCliente(int iFk_Id_Cliente)
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcCommand cmd = new OdbcCommand(SQL_VALIDAR_CLIENTE_VENDEDOR, conn))
+                {
+                    cmd.Parameters.AddWithValue("?", iFk_Id_Cliente);
+
+                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        conexion.desconexion(conn);
+                        return dt;
+                    }
+                }
+            }
+        }
+
+        //VENTAS GENERALES
+        public DataTable ObtenerListadoVentas()
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcDataAdapter da = new OdbcDataAdapter(SQL_VENTAS_LISTADO, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    conexion.desconexion(conn);
+                    return dt;
+                }
+            }
+        }
+
+
+        public bool GuardarVentaCompleta(DateTime dCmp_Fecha_Venta, int iFk_Id_Cliente, int iFk_Id_Sucursal, string sCmp_Estado_Venta, string sCmp_Tipo_Operacion, float fCmp_Saldo_Total, DataTable detalle,DateTime dCmp_Fecha_Vencimiento)
+        {
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                OdbcTransaction trans = conn.BeginTransaction();
+
+                try
+                {
+                    int iPk_Id_Ventas = 0;
+                      int idVenta = 0;
+
+                    // INSERTAR ENCABEZADO
+                    using (OdbcCommand cmdVenta = new OdbcCommand(SQL_INSERT_VENTA, conn, trans))
+                    {
+                        cmdVenta.Parameters.AddWithValue("?", dCmp_Fecha_Venta);
+                        cmdVenta.Parameters.AddWithValue("?", iFk_Id_Cliente);
+                        cmdVenta.Parameters.AddWithValue("?", iFk_Id_Sucursal);
+                        cmdVenta.Parameters.AddWithValue("?", sCmp_Estado_Venta);
+                        cmdVenta.Parameters.AddWithValue("?", sCmp_Tipo_Operacion);
+                        cmdVenta.Parameters.AddWithValue("?", fCmp_Saldo_Total);
+
+                        cmdVenta.ExecuteNonQuery();
+                    }
+
+                    // OBTENER ID GENERADO
+                    using (OdbcCommand cmdId = new OdbcCommand("SELECT LAST_INSERT_ID()", conn, trans))
+                    {
+                        iPk_Id_Ventas = Convert.ToInt32(cmdId.ExecuteScalar());
+                    }
+
+                    // INSERTAR DETALLE
+                    foreach (DataRow row in detalle.Rows)
+                    {
+                        using (OdbcCommand cmdDetalle = new OdbcCommand(SQL_INSERT_DETALLE, conn, trans))
+                        {
+                            cmdDetalle.Parameters.AddWithValue("?", iPk_Id_Ventas);
+                            cmdDetalle.Parameters.AddWithValue("?", row["IdProducto"]);
+                            cmdDetalle.Parameters.AddWithValue("?", row["Cantidad"]);
+                            cmdDetalle.Parameters.AddWithValue("?", row["Subtotal"]);
+                            cmdDetalle.Parameters.AddWithValue("?", 0); // costo (puedes mejorar luego)
+
+                            cmdDetalle.ExecuteNonQuery();
+                        }
+                    }
+                    int idCuentaPorCobrar = 0;
+                    using (OdbcCommand cmdCuenta = new OdbcCommand(SQL_INSERT_CUENTA_COBRAR, conn, trans))
+                    {
+                        cmdCuenta.Parameters.AddWithValue("?", iPk_Id_Ventas);
+                        cmdCuenta.Parameters.AddWithValue("?", iFk_Id_Cliente);
+                        cmdCuenta.Parameters.AddWithValue("?", dCmp_Fecha_Venta);
+                        cmdCuenta.Parameters.AddWithValue("?", dCmp_Fecha_Vencimiento);
+                        cmdCuenta.Parameters.AddWithValue("?", fCmp_Saldo_Total);
+                        cmdCuenta.Parameters.AddWithValue("?", "Activo");
+                        cmdCuenta.ExecuteNonQuery();
+                    }
+                    // Obtener ID de la cuenta por cobrar recién insertada
+                    using (OdbcCommand cmdIdCxC = new OdbcCommand("SELECT LAST_INSERT_ID()", conn, trans))
+                    {
+                        idCuentaPorCobrar = Convert.ToInt32(cmdIdCxC.ExecuteScalar());
+                    }
+                
+
+                    trans.Commit();
+                    return true;
+                }
+                //verificar errores bd
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw new Exception("Error en BD: " + ex.Message);
+                }
+                finally
+                {
+                    conexion.desconexion(conn);
+                }
+            }
+        }
+
+
+    }
+}

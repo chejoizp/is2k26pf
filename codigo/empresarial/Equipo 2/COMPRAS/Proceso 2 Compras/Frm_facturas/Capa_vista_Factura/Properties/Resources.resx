@@ -149,6 +149,6 @@
     <value>..\Resources\android-search_icon-icons.com_50501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="delete_remove_trash_icon_177304" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\delete_remove_trash_icon_177304.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\delete_remove_trash_icon_1773041.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
