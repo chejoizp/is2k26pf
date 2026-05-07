@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Data;
 using Capa_Modelo_Ventas;
+using Capa_Controlador_Mov_Inv;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Capa_Controlador_Ventas
 {
@@ -27,6 +30,14 @@ namespace Capa_Controlador_Ventas
         {
             return dao.ObtenerBodegas();
         }
+
+        //OBTENER UNIDADES DE MEDIAS COMOBOX
+        public DataTable ObtenerUnidades()
+        {
+            return dao.ObtenerUnidades();
+        }
+
+
         //OBTENER INVENTARIOS PARA GRID
         public DataTable ObtenerInventarioGrid()
         {
@@ -75,24 +86,16 @@ namespace Capa_Controlador_Ventas
 
 
         //NUEVO METODO PARA APLICAR DESCUENTO POR TIPO DE CLIENTE
-        public (string tipoCliente, float descuento) ObtenerTipoYDescuento(int iCantidad)
+        public (string sTipoCliente, float fDescuento) ObtenerDescuentoCliente(int iFk_Id_Cliente, float fCantidad)
         {
-            if (iCantidad >= 1 && iCantidad <= 11)
-                return ("Publico", 0f);
-
-            if (iCantidad >= 12 && iCantidad <= 47)
-                return ("Mayorista", 0.15f);
-
-            return ("Distribuidor", 0.25f);
+            return dao.ObtenerDescuentoCliente(iFk_Id_Cliente, fCantidad);
         }
 
         //CALCULAR SUBTOTAL CON DESCUENTO APLICADO
-        public float CalcularSubtotalConDescuento(float fPrecio, int iCantidad)
+        public float CalcularSubtotal(float fPrecio, float fCantidad, float fDescuento)
         {
-            var resultado = ObtenerTipoYDescuento(iCantidad);
-
-            float subtotal = fPrecio * iCantidad;
-            float descuentoAplicado = subtotal * resultado.descuento;
+            float subtotal = fPrecio * fCantidad;
+            float descuentoAplicado = subtotal * fDescuento;
 
             return subtotal - descuentoAplicado;
         }
@@ -115,12 +118,58 @@ namespace Capa_Controlador_Ventas
             return fSaldototal;
         }
 
-        public bool GuardarVenta(DateTime dCmp_Fecha_Venta, int iFk_Id_Cliente, int iFk_Id_Sucusal, string sCmp_Estado_Venta, string sCmp_Tipo_Operacion, float fSaldototal, DataTable detalle, DateTime dCmp_Fecha_Vencimiento)
+        //OBTENER UNIDAD DE MEDIDA POR PRODUCTOS
+        public DataTable ObtenerUnidadPorProducto(int iIdProducto)
         {
-            if (detalle.Rows.Count == 0)
-                return false;
+            return dao.ObtenerUnidadPorProducto(iIdProducto);
+        }
 
-            return dao.GuardarVentaCompleta(dCmp_Fecha_Venta, iFk_Id_Cliente, iFk_Id_Sucusal,  sCmp_Estado_Venta, sCmp_Tipo_Operacion, fSaldototal, detalle, dCmp_Fecha_Vencimiento);
+        //OBTENER BODEGAS POR PRODUCTO
+        public DataTable ObtenerBodegasPorProducto(int pk_inventario_id)
+        {
+            return dao.ObtenerBodegasPorProducto(pk_inventario_id);
+        }
+
+        //GUARDAR VENTA-COTIZACION-PEDIDO
+        public bool GuardarVenta(DateTime dCmp_Fecha_Venta, int iFk_Id_Cliente, int iFk_Id_Sucursal,
+          string sCmp_Estado_Venta, string sCmp_Tipo_Operacion, float fCmp_Saldo_Total,
+          DataTable detalle, DateTime dFecha_Especial, DateTime dCmp_Fecha_Vencimiento, bool bEsVenta)
+        {
+
+            return dao.GuardarVentaCompleta(dCmp_Fecha_Venta, iFk_Id_Cliente, iFk_Id_Sucursal,
+            sCmp_Estado_Venta, sCmp_Tipo_Operacion, fCmp_Saldo_Total, detalle,
+            dFecha_Especial, dCmp_Fecha_Vencimiento, bEsVenta);
+        }
+
+        public int ObtenerIdCXCPorVenta(int idVenta)
+        {
+            try
+            {
+                if (idVenta <= 0)
+                {
+                    MessageBox.Show("ID de venta inválido.", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return 0;
+                }
+
+                int idCXC = dao.ObtenerIdCXCPorVenta(idVenta);
+
+                if (idCXC == 0)
+                {
+                    MessageBox.Show("No se encontró una cuenta por cobrar para esta venta.\n" +
+                        "Asegúrese de haber guardado la venta correctamente.", "Aviso",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return 0;
+                }
+
+                return idCXC;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener CXC: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
         }
     }
 }

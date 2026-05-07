@@ -15,15 +15,40 @@ namespace Capa_Vista_Ventas
         private int _idCuentaPorCobrar;
         private decimal _monto;
         private string _motivo;
+        private string _nombreCliente;
+        private DateTime _fechaVencimiento;
 
-        // Constructor normal — desde ventas
-        public Frm_Pagos()
+    
+        public Frm_Pagos(int idCuentaPorCobrar, decimal monto)
         {
             InitializeComponent();
-            _tipo = Cls_TipoOperacion.Pago;
+            _tipo = Cls_TipoOperacion.Pago;  // ← Automáticamente es PAGO
+            _idCuentaPorCobrar = idCuentaPorCobrar;
+            _monto = monto;
+            _motivo = string.Empty;
+
             fun_CargarMetodosPago();
             fun_CargarEstadosPago();
-            fun_CargarCXC();
+           fun_PrecargarDesdVentas();
+        }
+
+        private void fun_PrecargarDesdVentas()
+        {
+            // Precargar CXC
+            Cbo_CXC.Text = _idCuentaPorCobrar.ToString();
+            Cbo_CXC.Enabled = false;
+
+            // Precargar Monto
+            Txt_Monto.Text = _monto.ToString("F2");
+            Txt_Monto.ReadOnly = true;
+
+            // Fecha por defecto
+            Dtp_Fecha_Pago.Value = DateTime.Now;
+
+            // Estado por defecto = Pendiente
+            Cbo_Estado.SelectedIndex = 0;
+
+            Cbo_MetodoPago.Focus();
         }
 
         // Constructor desde devolución
@@ -45,7 +70,7 @@ namespace Capa_Vista_Ventas
             Cbo_CXC.Text = _idCuentaPorCobrar.ToString();
             Cbo_CXC.Enabled = false;
 
-            Txt_Monto.Text = _monto.ToString("F2");
+            Txt_Monto.Text = $"Q:{_monto.ToString("F2")}";
             Txt_Monto.ReadOnly = true;
 
            
@@ -95,21 +120,21 @@ namespace Capa_Vista_Ventas
         {
         }
 
-        private void AbrirSubformulario(string sMetodo, int iIdPago, decimal deMonto)
+        private void AbrirSubformulario(string sMetodo, int iIdPago, decimal monto)
         {
             switch (sMetodo)
             {
                 case "Tarjeta":
-                    new Frm_Pago_Tarjeta(iIdPago, deMonto).ShowDialog();
+                    new Frm_Pago_Tarjeta(iIdPago,monto).ShowDialog();
                     break;
                 case "Efectivo":
-                    new Frm_pago_efectivo(iIdPago, deMonto).ShowDialog();
+                    new Frm_pago_efectivo(iIdPago, monto).ShowDialog();
                     break;
                 case "Transferencia":
-                    new Frm_Pago_Transferencia(iIdPago, deMonto).ShowDialog();
+                    new Frm_Pago_Transferencia(iIdPago, monto).ShowDialog();
                     break;
                 case "Cheque":
-                    new Frm_Pago_Cheque(iIdPago, deMonto).ShowDialog();
+                    new Frm_Pago_Cheque(iIdPago, monto).ShowDialog();
                     break;
             }
         }
@@ -117,6 +142,12 @@ namespace Capa_Vista_Ventas
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
             Txt_Monto.Enabled = true;
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
@@ -138,11 +169,6 @@ namespace Capa_Vista_Ventas
             }
 
             AbrirSubformulario(sMet, _idCuentaPorCobrar, monto);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

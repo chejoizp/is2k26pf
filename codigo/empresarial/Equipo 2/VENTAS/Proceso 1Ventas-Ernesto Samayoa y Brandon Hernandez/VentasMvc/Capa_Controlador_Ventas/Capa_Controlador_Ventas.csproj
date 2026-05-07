@@ -31,11 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Controlador_Mov_Inv">
+      <HintPath>..\..\..\..\INVENTARIO\Proceso 5 Transacciones de Inventario Pedro Ibañez\P5MovInvPedroIbañez\Capa_Controlador_Mov_Inv\bin\Debug\Capa_Controlador_Mov_Inv.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Modelo_Ventas">
       <HintPath>..\Capa_Modelo_Ventas\bin\Debug\Capa_Modelo_Ventas.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cls_Asignacion_Clientes_Controlador.cs" />
+    <Compile Include="Cls_CXCDetalle_Controlador.cs" />
     <Compile Include="Cls_Ventas_Controlador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

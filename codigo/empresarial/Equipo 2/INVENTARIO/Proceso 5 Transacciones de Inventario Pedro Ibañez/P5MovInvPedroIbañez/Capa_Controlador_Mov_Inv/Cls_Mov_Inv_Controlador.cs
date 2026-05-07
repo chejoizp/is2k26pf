@@ -42,6 +42,19 @@ namespace Capa_Controlador_Mov_Inv
             return dtIdbod;
         }
 
+        public DataTable fun_ObtenerDetallesPorMovimiento(int idMovimiento)
+        {
+            try
+            {
+
+                return Dao.fun_ObtenerDetallesPorMovimiento(idMovimiento);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en controlador al obtener detalles: " + ex.Message);
+            }
+        }
+
         private bool fun_Verificar_TipoMov(int idTipoMov)
         {
             //ENTRADA = TRUE
@@ -153,13 +166,14 @@ namespace Capa_Controlador_Mov_Inv
                 if (!resultadoMovimiento) return false; //Si falla el movimiento, retornar false
 
                 // Actualizar existencias
-                bool resultadoExistencias = fun_Actualizar_Existencias(idTipoMovimiento, detalle);
+                bool resultadoExistencias = fun_CreacionApartadoExistencias(idTipoMovimiento, detalle);
                 if (!resultadoExistencias) return false; // Si falla el stock, retornar false
 
                 return true; //Todo salió bien
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error en fun_ApartarStock");
                 return false;
                 throw new Exception("Error al guardar movimiento " + ex.Message);
             }
@@ -183,8 +197,8 @@ namespace Capa_Controlador_Mov_Inv
                     // Calcular nuevo stock según tipo de movimiento
                     float stockNuevo = fun_CalcularApartado(stockActual, item.cantidad, idTipoMovimiento);
 
-                    // 3 es apartado
-                    int EstadoExis = 3; 
+                    // Calcular EstadoExis internamente 
+                    int EstadoExis = fun_CalcularEstadoExistencia(stockNuevo);
 
                     listaStock.Add((item.idInventario, item.idBodega, stockNuevo,item.cantidad, EstadoExis, item.idUnidad));
                 }
@@ -195,7 +209,9 @@ namespace Capa_Controlador_Mov_Inv
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error al apartar stock Controlador");
                 return false;
+               
                 throw new Exception("Error en al actualizar existencias " + ex.Message);
             }
 
@@ -211,6 +227,7 @@ namespace Capa_Controlador_Mov_Inv
             }
             catch
             {
+                Console.WriteLine("Error al calcular apartado de stock");
                 throw new Exception($"Error al calcular apartado {idTipoMovimiento}");
             }
         }

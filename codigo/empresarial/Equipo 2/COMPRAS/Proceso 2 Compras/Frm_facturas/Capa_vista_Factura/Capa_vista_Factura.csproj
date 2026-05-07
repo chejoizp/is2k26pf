@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_controlador_Facturas">
+      <HintPath>..\Capa_controlador_Facturas\bin\Debug\Capa_controlador_Facturas.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -50,6 +53,12 @@
     <Compile Include="Frm_detalle_compra.Designer.cs">
       <DependentUpon>Frm_detalle_compra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Devolicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Devolicion.Designer.cs">
+      <DependentUpon>Frm_Devolicion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_factura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +75,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_detalle_compra.resx">
       <DependentUpon>Frm_detalle_compra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Devolicion.resx">
+      <DependentUpon>Frm_Devolicion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_factura.resx">
       <DependentUpon>Frm_factura.cs</DependentUpon>
@@ -107,6 +119,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete_remove_trash_icon_1773041.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_direction_left_undo_previous_backward_back_icon_250686.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\direction_play_backward_arrow_next_previous_back_icon_250674.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next_forward_player_multimedia_video_play_button_icon_250680 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\next_right_play_arrow_arrows_fast_forward_icon_250672.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

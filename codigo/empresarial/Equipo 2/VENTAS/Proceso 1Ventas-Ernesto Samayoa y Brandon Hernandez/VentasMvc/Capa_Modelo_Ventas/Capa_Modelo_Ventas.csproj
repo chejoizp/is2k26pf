@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Controlador_Mov_Inv">
+      <HintPath>..\..\..\..\INVENTARIO\Proceso 5 Transacciones de Inventario Pedro Ibañez\P5MovInvPedroIbañez\Capa_Controlador_Mov_Inv\bin\Debug\Capa_Controlador_Mov_Inv.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +47,8 @@
     <Compile Include="Cls_Asignacion_Clientes.cs" />
     <Compile Include="Cls_Asignacion_ClientesDAO.cs" />
     <Compile Include="Cls_ConexionBD.cs" />
+    <Compile Include="Cls_CXCDetalle_dao.cs" />
+    <Compile Include="Cls_CXC_Detalle.cs" />
     <Compile Include="Cls_Ventas.cs" />
     <Compile Include="Cls_VentasDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

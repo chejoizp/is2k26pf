@@ -94,6 +94,50 @@ namespace Capa_Modelo_Mov_Inv
             return sResultado;
         }
         //================================================
+        // Obtener Detalle por movimiento
+        public DataTable fun_ObtenerDetallesPorMovimiento(int idMovimiento)
+        {
+            DataTable dtDetalles = new DataTable();
+            try
+            {
+                string sQuery = @"SELECT 
+                            d.fk_movimiento_id,
+                            d.fk_inventario_id,
+                            i.nombre_prod,
+                            e.fk_bodega_id,
+                            b.Cmp_Nombre_Bodega,
+                            e.fk_id_unidad_medida,
+                            u.Nombre_Unidad,
+                            d.cantidad_transaccionada
+                          FROM tbl_movimiento_inventario_detalle d
+                          INNER JOIN tbl_inventario i 
+                                ON d.fk_inventario_id = i.pk_inventario_id
+                          INNER JOIN tbl_existencias e 
+                                ON d.fk_inventario_id = e.fk_inventario_id
+                          INNER JOIN tbl_bodega b 
+                                ON e.fk_bodega_id = b.Pk_Id_Bodega
+                          INNER JOIN tbl_unidad_de_medida u 
+                                ON e.fk_id_unidad_medida = u.ID_Unidad
+                          WHERE d.fk_movimiento_id = ?";
+
+                using (OdbcConnection oConn = conexion.oConexion())
+                {
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
+                    {
+                        oCmd.Parameters.AddWithValue("?", idMovimiento);
+                        OdbcDataAdapter oDA = new OdbcDataAdapter(oCmd);
+                        oDA.Fill(dtDetalles);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener detalles: " + ex.Message);
+            }
+            return dtDetalles;
+        }
+        //================================================
         // Obtener Stock
         public float fun_ObtenerStockActual(int idInventario, int idBodega)
         {
@@ -385,13 +429,12 @@ namespace Capa_Modelo_Mov_Inv
         {
             string sQueryUpdate = @"UPDATE tbl_existencias 
                             SET stock = ?,
+                                stock_Apartado = ?,
+                                estado_existencia = ?,
                                 fk_id_unidad_medida = ?
                             WHERE fk_inventario_id = ? 
                               AND fk_bodega_id = ?";
 
-            string sQueryInsert = @"INSERT INTO tbl_existencias 
-                                (fk_inventario_id, fk_bodega_id, stock, estado_existencia, fk_id_unidad_medida) 
-                            VALUES (?, ?, ?, ?, ?)";
             try
             {
                 using (OdbcConnection oConn = conexion.oConexion())
@@ -407,22 +450,14 @@ namespace Capa_Modelo_Mov_Inv
                             using (OdbcCommand oCmdUpdate = new OdbcCommand(sQueryUpdate, oConn, transaccion))
                             {
                                 oCmdUpdate.Parameters.AddWithValue("?", item.stockNuevo);
+                                oCmdUpdate.Parameters.AddWithValue("?", item.CantidadApartada);
+                                oCmdUpdate.Parameters.AddWithValue("?", item.EstadoExistencia);
                                 oCmdUpdate.Parameters.AddWithValue("?", item.idUnidad);
                                 oCmdUpdate.Parameters.AddWithValue("?", item.idInventario);
                                 oCmdUpdate.Parameters.AddWithValue("?", item.idBodega);
                                 oCmdUpdate.ExecuteNonQuery();
                             }
 
-                            // INSERT con la cantidad apartada
-                            using (OdbcCommand oCmdInsert = new OdbcCommand(sQueryInsert, oConn, transaccion))
-                            {
-                                oCmdInsert.Parameters.AddWithValue("?", item.idInventario);
-                                oCmdInsert.Parameters.AddWithValue("?", item.idBodega);
-                                oCmdInsert.Parameters.AddWithValue("?", item.CantidadApartada);
-                                oCmdInsert.Parameters.AddWithValue("?", item.EstadoExistencia);
-                                oCmdInsert.Parameters.AddWithValue("?", item.idUnidad);
-                                oCmdInsert.ExecuteNonQuery();
-                            }
                         }
 
                         transaccion.Commit();
@@ -431,12 +466,14 @@ namespace Capa_Modelo_Mov_Inv
                     catch (Exception ex)
                     {
                         transaccion.Rollback();
-                        throw new Exception("Error al ejecutar Apartado Stock: " + ex.Message);
+                        Console.WriteLine("Error al apartar stock");
+                        throw new Exception("Error al ejecutar Apartado Stock: " + ex.Message);            
                     }
                 }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error conexión stock apartar");
                 throw new Exception("Error de conexión: " + ex.Message);
             }
         }

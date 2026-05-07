@@ -24,6 +24,83 @@ namespace Capa_Vista_Mov_Inv
 
         Cls_Mov_Inv_Controlador ctrl = new Cls_Mov_Inv_Controlador();
 
+        private Cls_Constructor_Encabezado _encabezado;
+        public Frm_Encabezado_Transaccion(int idMovimiento, int idTipo, string tipoMovimiento, DateTime fecha, string descripcion)
+        {
+            InitializeComponent();
+
+
+
+            fun_cargar_combos();
+            EstadoInicialControles();
+            EstadoInicialBotones();
+            // Mapeo exacto con los controles del formulario
+            Cbo_Id_Movimiento.SelectedValue = idMovimiento;       // ID Movimiento -> 1, 2, 3...
+            CBO_ID_Tipo_Movimiento.SelectedValue = idTipo;        // ID Tipo -> 1, 2...
+            DTP_FECHA_Movimiento.Value = fecha;                   // Fecha -> 1/10/2025 8:00 AM
+            txt_descripcion.Text = descripcion;                   // Descripción -> "Compra inicial..."
+
+            CargarDetallesEnGrid(idMovimiento);
+        }
+
+
+
+        private void CargarDetallesEnGrid(int idMovimiento)
+        {
+            try
+            {
+                DataTable dtDetalles = ctrl.fun_ObtenerDetallesPorMovimiento(idMovimiento);
+
+                DGV_DETALLE_MOVIMIENTO.Rows.Clear();
+
+                foreach (DataRow row in dtDetalles.Rows)
+                {
+                    int index = DGV_DETALLE_MOVIMIENTO.Rows.Add();
+                    DataGridViewRow fila = DGV_DETALLE_MOVIMIENTO.Rows[index];
+
+                    fila.Cells["Clm_ID_Producto"].Value = row["fk_inventario_id"];
+                    fila.Cells["Clm_Producto"].Value = row["nombre_prod"];
+                    fila.Cells["ID_unidad"].Value = row["fk_id_unidad_medida"];
+                    fila.Cells["UnidadMedida"].Value = row["Nombre_Unidad"];
+                    fila.Cells["ID_Bodega"].Value = row["fk_bodega_id"];
+                    fila.Cells["Bodega"].Value = row["Cmp_Nombre_Bodega"];
+                    fila.Cells["Clm_Cantidad"].Value = row["cantidad_transaccionada"];
+                }
+
+                DGV_DETALLE_MOVIMIENTO.AllowUserToAddRows = false;
+                DGV_DETALLE_MOVIMIENTO.ReadOnly = true;
+                DGV_DETALLE_MOVIMIENTO.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Frm_Encabezado_Transaccion_Load(object sender, EventArgs e)
+        {
+            fun_LlenarControles();
+        }
+
+        private void fun_LlenarControles()
+        {
+            try
+            {
+                // Llenar cada control con los datos recibidos
+                Cbo_Id_Movimiento.Text = _encabezado.ID.ToString();
+                DTP_FECHA_Movimiento.Value = _encabezado.Fecha;
+                txt_descripcion.Text = _encabezado.Descripcion;
+
+                // Seleccionar el tipo de movimiento en el CBO
+                CBO_ID_Tipo_Movimiento.SelectedValue = _encabezado.IdTipoMovimiento;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al llenar controles: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void Btn_Salir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -155,6 +232,7 @@ namespace Capa_Vista_Mov_Inv
             EstadoInicialControles();
             EstadoInicialBotones();
             LimpiarControlesEncabezado();
+            DGV_DETALLE_MOVIMIENTO.Rows.Clear();
         }
 
 
@@ -246,9 +324,9 @@ namespace Capa_Vista_Mov_Inv
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (NUD_Cant_mov.Value > 5000)
+            if (NUD_Cant_mov.Value < 0)
             {
-                MessageBox.Show("Valor de cantidad no puede ser mayor a 5000", "Aviso",
+                MessageBox.Show("Valor de cantidad no puede ser menor a 0", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
