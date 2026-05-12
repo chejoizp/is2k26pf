@@ -7,17 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Vista_OrdenProduccion;
 
-namespace OrdenProduccion_Ejecucion
+namespace Capa_Vista_Ventas
 {
-    public partial class Form1 : Form
+    public partial class Rpt_Ventas_Generales : Form
     {
-        public Form1()
+        public Rpt_Ventas_Generales()
         {
             InitializeComponent();
-            Frm_OrdenProduccion_Encabezado vistaNueva = new Frm_OrdenProduccion_Encabezado();
-            vistaNueva.Show();
         }
     }
 }
