@@ -39,7 +39,10 @@ namespace Capa_vista_orden_compra
             Txt_NumeroOrden.Enabled = false;
 
             Txt_estado.Enabled = false;
-            
+
+            Dtp_fechaRegistro.DateTime.now();
+
+
 
         }
 
@@ -568,6 +571,22 @@ namespace Capa_vista_orden_compra
 
 
             Dgv_DetalleProductos.DataSource = resultado; */
+        }
+
+        private void Btn_Imprimir_Click(object sender, EventArgs e)
+        {
+            Frm_reporte frmreporteorden = new Frm_reporte();
+            frmreporteorden.ShowDialog();
+        }
+
+        private void Cmb_unidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Dtp_fechaRegistro_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
