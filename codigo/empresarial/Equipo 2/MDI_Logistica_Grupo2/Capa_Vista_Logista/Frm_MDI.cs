@@ -30,6 +30,7 @@ using Capa_vista_orden_compra;
 using CV_730_DSH_BRD;
 using System.Drawing.Imaging;
 using Capa_Vista_CXP;
+using Capa_Vista_Balance;
 
 
 namespace Capa_Vista_Logista
@@ -131,7 +132,7 @@ namespace Capa_Vista_Logista
                 {729, facturasToolStripMenuItem},
                 //{714, comprasToolStripMenuItem},
                 {715, cuentasPorPagarToolStripMenuItem1},
-                {716, detalleOrdenDeProduccionToolStripMenuItem},
+                //{716, detalleOrdenDeProduccionToolStripMenuItem},
                 {711, cuentasPorCobrarToolStripMenuItem},
                 {717, comprobanteCompraToolStripMenuItem},
                 {718, comprobanteVentaToolStripMenuItem},
@@ -144,11 +145,23 @@ namespace Capa_Vista_Logista
                 {727, sucursalesToolStripMenuItem},
                 {713, devoluconToolStripMenuItem},
                 //{730, consultaDeInventariosToolStripMenuItem_Click},
-                {732,cuentasPorCobrarDetalleToolStripMenuItem}
+                {732,cuentasPorCobrarDetalleToolStripMenuItem},
+                {734,pagosVentaToolStripMenuItem }
+
+
             };
+            Dictionary<int, ToolStripMenuItem> mapaReportes = new Dictionary<int, ToolStripMenuItem>
+            {
+                {733, balanceDeAntiguedadToolStripMenuItem },
+               
+
+
+            };
+
 
             foreach (var sub in mapaCatalogos.Values) sub.Enabled = false;
             foreach (var sub in mapaProcesos.Values) sub.Enabled = false;
+            foreach (var sub in mapaReportes.Values) sub.Enabled = false;
             menuItems[MenuOpciones.Seguridad].Enabled = false;
 
             DataTable dtPermisosPerfil = controladorPermisosPerfil.datObtenerPermisosPorPerfil(iIdPerfil);
@@ -163,6 +176,8 @@ namespace Capa_Vista_Logista
                         mapaCatalogos[idAplicacion].Enabled = true;
                     if (mapaProcesos.ContainsKey(idAplicacion))
                         mapaProcesos[idAplicacion].Enabled = true;
+                    if (mapaReportes.ContainsKey(idAplicacion))
+                        mapaReportes[idAplicacion].Enabled = true;
                 }
 
                 if (idModulo == 4 && idAplicacion == 309)
@@ -183,6 +198,8 @@ namespace Capa_Vista_Logista
                         mapaCatalogos[idAplicacion].Enabled = true;
                     if (mapaProcesos.ContainsKey(idAplicacion))
                         mapaProcesos[idAplicacion].Enabled = true;
+                    if (mapaReportes.ContainsKey(idAplicacion))
+                        mapaReportes[idAplicacion].Enabled = true;
                 }
 
                 if (idModulo == 4 && idAplicacion == 309)
@@ -193,6 +210,7 @@ namespace Capa_Vista_Logista
 
             menuItems[MenuOpciones.Catalogos].Enabled = mapaCatalogos.Values.Any(m => m.Enabled);
             menuItems[MenuOpciones.Procesos].Enabled = mapaProcesos.Values.Any(m => m.Enabled);
+            menuItems[MenuOpciones.Reportes].Enabled = mapaProcesos.Values.Any(m => m.Enabled);
         }
 
         private void cerrarSesiónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -280,12 +298,7 @@ namespace Capa_Vista_Logista
             CXP.Show();
         }
 
-        /*private void pagosVentasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Pagos pagos = new Frm_Pagos();
-            pagos.MdiParent = this;
-            pagos.Show();
-        }*/
+     
 
         private void movimientoDeInventariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -327,13 +340,6 @@ namespace Capa_Vista_Logista
             Frm_factura factura = new Frm_factura();
             factura.MdiParent = this;
             factura.Show();
-        }
-
-        private void detalleOrdenDeProduccionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Orden_Produccion_Detalle OrdenProd = new Frm_Orden_Produccion_Detalle();
-            OrdenProd.MdiParent = this;
-            OrdenProd.Show();
         }
 
         private void cuentasPorCobrarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -485,6 +491,37 @@ namespace Capa_Vista_Logista
             CXC_detalle.MdiParent = this;
             CXC_detalle.Show();
 
+        }
+
+        private void balanceDeAntiguedadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Balance_Menu balance = new Frm_Balance_Menu();
+            balance.MdiParent = this;
+            balance.Show();
+        }
+
+
+
+
+        private void devolucionesVentasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Devoluciones_Generales Dv = new Frm_Devoluciones_Generales();
+            Dv.MdiParent = this;
+            Dv.Show();
+        }
+
+        private void balanceDeAntiguedadToolStripMenuItem_Click_2(object sender, EventArgs e)
+        {
+            Frm_Balance_Menu Balance = new Frm_Balance_Menu();
+            Balance.MdiParent = this;
+            Balance.Show();
+        }
+
+        private void pagosVentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Pagos pagos = new Frm_Pagos();
+            pagos.MdiParent = this;
+            pagos.Show();
         }
     }
 }

@@ -73,20 +73,20 @@ namespace Capa_Controlador_OrdenProduccion
                 int idOrdenGenerada = oProduccionDAO.InsertarOrdenProduccion(Convert.ToInt32(sIdVendedor), dFechaEmision, dFechaEstimada, sEstado, lDetallesValidados);
 
                 // Mapear para compras
-                List<(int idInventario, int idUnidad, float cantidad, decimal precio)> detallesParaCompras = new List<(int, int, float, decimal)>();
+                List<(int idInventario, int idUnidad, float cantidad)> detallesParaCompras = new List<(int, int, float)>();
 
                 foreach (var det in lDetallesValidados)
                 {
-                    detallesParaCompras.Add((det.iIdProducto, 1, (float)det.iCantidadSolicitada, 0m));
+                    detallesParaCompras.Add((det.iIdProducto, 1, (float)det.iCantidadSolicitada));
                 }
 
                 Capa_controlador_orden_compra.Cls_controlador oCompras = new Capa_controlador_orden_compra.Cls_controlador();
 
                 int idProveedorQuemado = 1010;
-                decimal subtotalQuemado = 0m;
-                decimal totalQuemado = 0m;
+               // decimal subtotalQuemado = 0m;
+               // decimal totalQuemado = 0m;
 
-                oCompras.mrp(idProveedorQuemado, subtotalQuemado, totalQuemado, detallesParaCompras);
+                oCompras.mrp(idProveedorQuemado, detallesParaCompras);
 
                 return idOrdenGenerada;
             }
